@@ -1,0 +1,62 @@
+30/07/2015 23:28:32 4976 Logging started
+30/07/2015 23:28:32 4976 Begin Startup
+30/07/2015 23:28:32 4976 Chaosauncher 0.5.4.4 on NT 6.2.9200  at D:\BWAPI\LMAD\Chaoslauncher\Chaoslauncher.exe
+30/07/2015 23:28:32 4976 Load Settings
+30/07/2015 23:28:32 4976 GamePath: D:\StarCraft\
+30/07/2015 23:28:32 4976 Load Plugins
+30/07/2015 23:28:32 4976 AdvLoaderPluginPath: \Plugins\
+30/07/2015 23:28:32 4976 Loading BWL4-Plugin D:\BWAPI\LMAD\Chaoslauncher\iccscbn.icc
+30/07/2015 23:28:32 4976 Plugin loaded ICCup
+30/07/2015 23:28:32 4976 Loading BWL4-Plugin D:\BWAPI\LMAD\Chaoslauncher\Plugins\APMAlert.bwl
+30/07/2015 23:28:32 4976 Plugin loaded APMAlert (1.16.1)
+30/07/2015 23:28:32 4976 Loading BWL4-Plugin D:\BWAPI\LMAD\Chaoslauncher\Plugins\BWAPI_PluginInjector.bwl
+30/07/2015 23:28:32 4976 Plugin loaded BWAPI 4.1.2 Injector [RELEASE]
+30/07/2015 23:28:32 4976 Loading BWL4-Plugin D:\BWAPI\LMAD\Chaoslauncher\Plugins\BWAPI_PluginInjectord.bwl
+30/07/2015 23:28:32 4976 Plugin loaded BWAPI 4.1.2 Injector [DEBUG]
+30/07/2015 23:28:32 4976 Loading BWL4-Plugin D:\BWAPI\LMAD\Chaoslauncher\Plugins\Chaosplugin.bwl
+30/07/2015 23:28:32 4976 Plugin loaded Chaosplugin for 1.16.1
+30/07/2015 23:28:32 4976 Loading BWL4-Plugin D:\BWAPI\LMAD\Chaoslauncher\Plugins\LatencyChanger.bwl
+30/07/2015 23:28:32 4976 Plugin loaded LatencyChanger for 1.16.1
+30/07/2015 23:28:32 4976 Loading BWL4-Plugin D:\BWAPI\LMAD\Chaoslauncher\Plugins\repfix.bwl
+30/07/2015 23:28:32 4976 Plugin loaded RepFix
+30/07/2015 23:28:32 4976 Loading BWL4-Plugin D:\BWAPI\LMAD\Chaoslauncher\Plugins\RWAPlayer.bwl
+30/07/2015 23:28:32 4976 Plugin loaded RWAPlayer (1.16.1)
+30/07/2015 23:28:32 4976 Loading BWL4-Plugin D:\BWAPI\LMAD\Chaoslauncher\Plugins\RWARecorder.bwl
+30/07/2015 23:28:32 4976 Plugin loaded RWARecorder (1.16.1)
+30/07/2015 23:28:32 4976 Loading BWL4-Plugin D:\BWAPI\LMAD\Chaoslauncher\Plugins\Stormplugin.bwl
+30/07/2015 23:28:32 4976 Plugin loaded Stormplugin for 1.16.1
+30/07/2015 23:28:32 4976 Loading BWL4-Plugin D:\BWAPI\LMAD\Chaoslauncher\Plugins\wmode.bwl
+30/07/2015 23:28:32 4976 Plugin loaded W-MODE 1.02
+30/07/2015 23:28:32 4976 Load Tools
+30/07/2015 23:28:32 4976 Init GUI
+30/07/2015 23:28:32 4976 Get Starcraftversions
+30/07/2015 23:28:32 4976 Init complete
+30/07/2015 23:28:33 4976 Startbutton
+30/07/2015 23:28:33 4976 Starting Game Starcraft 1.16.1 D:\StarCraft\StarCraft.exe
+30/07/2015 23:28:33 4976 BWAPI 4.1.2 Injector [DEBUG] Version  Compatible
+30/07/2015 23:28:33 4976 W-MODE 1.02 Version 1.0.2 Compatible
+30/07/2015 23:28:33 4976 Could not obtain SeDebugPrivilege Not all privileges or groups referenced are assigned to the caller.
+(1300)
+30/07/2015 23:28:35 4976 CreateProcess
+30/07/2015 23:28:35 4976 Call ScSuspended for all active Plugins
+30/07/2015 23:28:35 4976 ApplyPatchSuspended for BWAPI 4.1.2 Injector [DEBUG]
+30/07/2015 23:28:35 4976 ApplyPatchSuspended for W-MODE 1.02
+30/07/2015 23:28:35 4976 ResumeThread
+30/07/2015 23:28:35 4976 WaitForInputIdle
+30/07/2015 23:28:35 4976 Call ScWindowCreated for all active Plugins
+30/07/2015 23:28:35 4976 ApplyPatch for BWAPI 4.1.2 Injector [DEBUG]
+30/07/2015 23:28:35 4976 ApplyPatch for W-MODE 1.02
+30/07/2015 23:28:35 4976 Starting Starcraft completed
+30/07/2015 23:28:45 4976 Finishing
+30/07/2015 23:28:45 4976 Unloading Plugin ICCup
+30/07/2015 23:28:45 4976 Unloading Plugin APMAlert (1.16.1)
+30/07/2015 23:28:45 4976 Unloading Plugin BWAPI 4.1.2 Injector [RELEASE]
+30/07/2015 23:28:45 4976 Unloading Plugin BWAPI 4.1.2 Injector [DEBUG]
+30/07/2015 23:28:45 4976 Unloading Plugin Chaosplugin for 1.16.1
+30/07/2015 23:28:45 4976 Unloading Plugin LatencyChanger for 1.16.1
+30/07/2015 23:28:45 4976 Unloading Plugin RepFix
+30/07/2015 23:28:45 4976 Unloading Plugin RWAPlayer (1.16.1)
+30/07/2015 23:28:45 4976 Unloading Plugin RWARecorder (1.16.1)
+30/07/2015 23:28:45 4976 Unloading Plugin Stormplugin for 1.16.1
+30/07/2015 23:28:45 4976 Unloading Plugin W-MODE 1.02
+30/07/2015 23:28:45 4976 Logging ended
