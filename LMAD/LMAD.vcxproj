@@ -88,12 +88,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Agent\agent.cc" />
+    <ClCompile Include="Source\agent\army-agent.cc" />
+    <ClCompile Include="Source\agent\eco-agent.cc" />
+    <ClCompile Include="Source\agent\main-agent.cc" />
+    <ClCompile Include="Source\agent\main-army-agent.cc" />
+    <ClCompile Include="Source\agent\main-eco-agent.cc" />
     <ClCompile Include="Source\IA.cpp" />
     <ClCompile Include="Source\LMAD.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Agent\agent.hh" />
     <ClInclude Include="Source\Agent\agent.hxx" />
+    <ClInclude Include="Source\agent\army-agent.hh" />
+    <ClInclude Include="Source\agent\army-agent.hxx" />
+    <ClInclude Include="Source\agent\eco-agent.hxx" />
+    <ClInclude Include="Source\agent\main-agent.hh" />
+    <ClInclude Include="Source\agent\main-agent.hxx" />
+    <ClInclude Include="Source\agent\main-army-agent.hh" />
+    <ClInclude Include="Source\agent\main-army-agent.hxx" />
+    <ClInclude Include="Source\agent\main-eco-agent.hh" />
+    <ClInclude Include="Source\agent\main-eco-agent.hxx" />
     <ClInclude Include="Source\IA.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
