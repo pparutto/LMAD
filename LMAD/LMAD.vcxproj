@@ -87,10 +87,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Agent\agent.cc" />
     <ClCompile Include="Source\IA.cpp" />
     <ClCompile Include="Source\LMAD.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Agent\agent.hh" />
+    <ClInclude Include="Source\Agent\agent.hxx" />
     <ClInclude Include="Source\IA.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
