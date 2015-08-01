@@ -8,6 +8,8 @@ class UnitAgent
 public:
 	UnitAgent(const BWAPI::Unit u);
 
+	const BWAPI::Unit unit() const;
+
 protected:
 	const BWAPI::Unit unit_;
 };

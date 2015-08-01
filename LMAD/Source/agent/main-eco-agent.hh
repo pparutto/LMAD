@@ -17,8 +17,10 @@ public:
 
 	virtual void run() override;
 
-	void add_worker(const BWAPI::Unit u);
-	void add_HQ(const BWAPI::Unit u);
+	void add_worker(WorkerAgent* u);
+	void add_HQ(HQAgent* u);
+
+	std::set<HQAgent*>& HQs();
 
 private:
 	std::set<EcoAgent*> eco_agents_;

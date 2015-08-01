@@ -13,17 +13,20 @@ MainEcoAgent::run()
 }
 
 void
-MainEcoAgent::add_worker(const BWAPI::Unit u)
+MainEcoAgent::add_worker(WorkerAgent* u)
 {
-	WorkerAgent* wu = new WorkerAgent(u);
-	eco_agents_.insert(wu);
-	workers_.insert(wu);
+	eco_agents_.insert(u);
+	workers_.insert(u);
 }
 
 void
-MainEcoAgent::add_HQ(const BWAPI::Unit u)
+MainEcoAgent::add_HQ(HQAgent* u)
 {
-	HQAgent* wu = new HQAgent(u);
-	//eco_agents_.insert(wu);
-	HQs_.insert(wu);
+	HQs_.insert(u);
+}
+
+std::set<HQAgent*>&
+MainEcoAgent::HQs()
+{
+	return HQs_;
 }

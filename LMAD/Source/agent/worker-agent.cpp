@@ -11,7 +11,7 @@ WorkerAgent::WorkerAgent(const BWAPI::Unit u)
 void
 WorkerAgent::run()
 {
-	if (!is_collecting_ || unit_->isIdle())
+	if (!is_collecting_)
 	{
 		const BWAPI::Unit mine = utils::closest_unit(BWAPI::Broodwar->getMinerals(), unit_);
 		unit_->rightClick(mine);
