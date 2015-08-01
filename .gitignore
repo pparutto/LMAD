@@ -1,0 +1,11 @@
+*.exe
+*.pdb
+ExampleProjects.sdf
+ExampleProjects.opensdf
+ExampleProjects.v12.suo
+Release/
+ExempleAIClient/
+*.log
+*.tlog
+Debug/
+*.obj
