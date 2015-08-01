@@ -39,6 +39,9 @@
     <ClCompile Include="Source\agent\requests\request.cc">
       <Filter>agent\requests</Filter>
     </ClCompile>
+    <ClCompile Include="Source\agent\requests\requests.cc">
+      <Filter>agent\requests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\IA.h" />
@@ -119,6 +122,12 @@
     </ClInclude>
     <ClInclude Include="Source\tech-tree\building-tech.hh">
       <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\requests\requests.hh">
+      <Filter>agent\requests</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\requests\requests-fw.hh">
+      <Filter>agent\requests</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@ class Request
 {
 public:
 
-	virtual void visit(Agent* agent) = 0;
+	virtual void visit(Agent* agent, unsigned priority) = 0;
 };
 
 #endif
