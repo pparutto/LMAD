@@ -95,12 +95,14 @@
     <ClCompile Include="Source\agent\main-eco-agent.cc" />
     <ClCompile Include="Source\IA.cpp" />
     <ClCompile Include="Source\LMAD.cpp" />
+    <ClCompile Include="Source\tech-tree\tech-tree.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Agent\agent.hh" />
     <ClInclude Include="Source\Agent\agent.hxx" />
     <ClInclude Include="Source\agent\army-agent.hh" />
     <ClInclude Include="Source\agent\army-agent.hxx" />
+    <ClInclude Include="Source\agent\eco-agent.hh" />
     <ClInclude Include="Source\agent\eco-agent.hxx" />
     <ClInclude Include="Source\agent\main-agent.hh" />
     <ClInclude Include="Source\agent\main-agent.hxx" />
@@ -109,6 +111,12 @@
     <ClInclude Include="Source\agent\main-eco-agent.hh" />
     <ClInclude Include="Source\agent\main-eco-agent.hxx" />
     <ClInclude Include="Source\IA.h" />
+    <ClInclude Include="Source\tech-tree\building-tech.hh" />
+    <ClInclude Include="Source\tech-tree\research-tech.hh" />
+    <ClInclude Include="Source\tech-tree\spell-tech.hh" />
+    <ClInclude Include="Source\tech-tree\tech-tree.hh" />
+    <ClInclude Include="Source\tech-tree\tech.hh" />
+    <ClInclude Include="Source\tech-tree\unit-tech.hh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

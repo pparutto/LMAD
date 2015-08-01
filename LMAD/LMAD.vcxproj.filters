@@ -21,6 +21,9 @@
     <ClCompile Include="Source\agent\main-eco-agent.cc">
       <Filter>agent\src</Filter>
     </ClCompile>
+    <ClCompile Include="Source\tech-tree\tech-tree.cc">
+      <Filter>TechTree\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\IA.h" />
@@ -57,6 +60,27 @@
     <ClInclude Include="Source\agent\main-eco-agent.hxx">
       <Filter>agent\inline</Filter>
     </ClInclude>
+    <ClInclude Include="Source\tech-tree\tech-tree.hh">
+      <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tech-tree\tech.hh">
+      <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tech-tree\research-tech.hh">
+      <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tech-tree\building-tech.hh">
+      <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tech-tree\unit-tech.hh">
+      <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tech-tree\spell-tech.hh">
+      <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\eco-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="agent">
@@ -70,6 +94,18 @@
     </Filter>
     <Filter Include="agent\inline">
       <UniqueIdentifier>{791029a5-2c27-4f07-ab03-57628697cd7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TechTree">
+      <UniqueIdentifier>{f43a38bc-464b-4139-be4c-fca6ecd5f17b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TechTree\header">
+      <UniqueIdentifier>{6680eef8-34d8-4ae9-b54d-a85c24c86274}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TechTree\inline">
+      <UniqueIdentifier>{498f4b94-37b5-4fe0-b270-42f1c6001b30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TechTree\src">
+      <UniqueIdentifier>{93d52ebe-444b-4a06-bf12-29f79815d142}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
