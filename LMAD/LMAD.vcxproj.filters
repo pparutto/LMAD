@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Source\IA.cpp" />
+    <ClCompile Include="Source\LMAD.cpp" />
+    <ClCompile Include="Source\Agent\agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\army-agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\eco-agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\main-agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\main-army-agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\main-eco-agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\IA.h" />
+    <ClInclude Include="Source\Agent\agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Agent\agent.hxx">
+      <Filter>agent\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\army-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\main-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\main-army-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\main-eco-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\army-agent.hxx">
+      <Filter>agent\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\eco-agent.hxx">
+      <Filter>agent\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\main-agent.hxx">
+      <Filter>agent\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\main-army-agent.hxx">
+      <Filter>agent\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\main-eco-agent.hxx">
+      <Filter>agent\inline</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="agent">
+      <UniqueIdentifier>{a224cbe2-67a9-4285-8265-08b0a11482c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="agent\src">
+      <UniqueIdentifier>{0f73d5dc-9120-49b9-880d-ddc903a9a79a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="agent\header">
+      <UniqueIdentifier>{930d0e28-7027-4ab0-b5c3-b087054e22e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="agent\inline">
+      <UniqueIdentifier>{791029a5-2c27-4f07-ab03-57628697cd7f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
