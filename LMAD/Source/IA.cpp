@@ -4,6 +4,8 @@
 #include <BWAPI.h>
 #include <BWAPI/Client.h>
 
+#include "agent/main-eco-agent.hh"
+
 using namespace BWAPI;
 
 class Behavior
@@ -71,24 +73,21 @@ public:
 
 void ia()
 {
-	std::vector<WorkerBehavior*> workers;
-	std::vector<HQBehavior*> hqs;
+	MainEcoAgent* eco = new MainEcoAgent();
+
 	for (const Unit& u : Broodwar->self()->getUnits())
 	{
 		if (u->getType().isWorker())
-			workers.push_back(new WorkerBehavior(u));
-		else if (u->getType() == UnitTypes::Protoss_Nexus)
-			hqs.push_back(new HQBehavior(u));
+			eco->add_worker(u);
+		else if (u->getType().isResourceDepot())
+			eco->add_HQ(u);
 	}
 
-	for (auto &u : workers)
-		u->collect(false);
-	
+	eco->run();
+
 	while (Broodwar->isInGame())
 	{
-		for (auto& u : hqs)
-			u->produce_worker();
-
+		eco->run();
 		for (auto &e : Broodwar->getEvents())
 		{
 			switch (e.getType())
@@ -97,18 +96,13 @@ void ia()
 				Unit u = e.getUnit();
 				if (u->getPlayer()->getID() == Broodwar->self()->getID())
 				{
-					std::cout << "coucou" << std::endl;
 					if (u->getType().isWorker())
-					{
-						WorkerBehavior* wu = new WorkerBehavior(u);
-						wu->collect(false);
-						workers.push_back(wu);
-					}
+						eco->add_worker(u);
 				}
 				break;
 			}
 		}
-		std::cout << "yolo" << std::endl;
+		//std::cout << "yolo" << std::endl;
 		Broodwar->sendText("proute");
 		BWAPIClient.update();
 	}

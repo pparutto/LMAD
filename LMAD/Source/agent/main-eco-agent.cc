@@ -1,13 +1,29 @@
 #include "main-eco-agent.hh"
 
-void MainEcoAgent::run()
-{
-	std::set<EcoAgent*>::iterator it = eco_agents_.begin();
-	std::set<EcoAgent*>::iterator e = eco_agents_.end();
+#include "worker-agent.hh"
 
-	while (it != e)
-	{
-		(*it)->run();
-		++it;
-	}
+void
+MainEcoAgent::run()
+{
+	for (EcoAgent* e: eco_agents_)
+		e->run();
+
+	for (HQAgent* e : HQs_)
+		e->run();
+}
+
+void
+MainEcoAgent::add_worker(const BWAPI::Unit u)
+{
+	WorkerAgent* wu = new WorkerAgent(u);
+	eco_agents_.insert(wu);
+	workers_.insert(wu);
+}
+
+void
+MainEcoAgent::add_HQ(const BWAPI::Unit u)
+{
+	HQAgent* wu = new HQAgent(u);
+	//eco_agents_.insert(wu);
+	HQs_.insert(wu);
 }

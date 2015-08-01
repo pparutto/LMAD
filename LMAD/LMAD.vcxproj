@@ -89,10 +89,15 @@
   <ItemGroup>
     <ClCompile Include="Source\Agent\agent.cc" />
     <ClCompile Include="Source\agent\army-agent.cc" />
+    <ClCompile Include="Source\agent\base-agent.cc" />
     <ClCompile Include="Source\agent\eco-agent.cc" />
+    <ClCompile Include="Source\agent\hq-agent.cc" />
     <ClCompile Include="Source\agent\main-agent.cc" />
     <ClCompile Include="Source\agent\main-army-agent.cc" />
     <ClCompile Include="Source\agent\main-eco-agent.cc" />
+    <ClCompile Include="Source\agent\unit-agent.cc" />
+    <ClCompile Include="Source\agent\utils.cc" />
+    <ClCompile Include="Source\agent\worker-agent.cpp" />
     <ClCompile Include="Source\IA.cpp" />
     <ClCompile Include="Source\LMAD.cpp" />
   </ItemGroup>
@@ -101,13 +106,20 @@
     <ClInclude Include="Source\Agent\agent.hxx" />
     <ClInclude Include="Source\agent\army-agent.hh" />
     <ClInclude Include="Source\agent\army-agent.hxx" />
+    <ClInclude Include="Source\agent\base-agent.hh" />
+    <ClInclude Include="Source\agent\building-agent.hh" />
+    <ClInclude Include="Source\agent\eco-agent.hh" />
     <ClInclude Include="Source\agent\eco-agent.hxx" />
+    <ClInclude Include="Source\agent\hq-agent.hh" />
     <ClInclude Include="Source\agent\main-agent.hh" />
     <ClInclude Include="Source\agent\main-agent.hxx" />
     <ClInclude Include="Source\agent\main-army-agent.hh" />
     <ClInclude Include="Source\agent\main-army-agent.hxx" />
     <ClInclude Include="Source\agent\main-eco-agent.hh" />
     <ClInclude Include="Source\agent\main-eco-agent.hxx" />
+    <ClInclude Include="Source\agent\unit-agent.hh" />
+    <ClInclude Include="Source\agent\utils.hh" />
+    <ClInclude Include="Source\agent\worker-agent.hh" />
     <ClInclude Include="Source\IA.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

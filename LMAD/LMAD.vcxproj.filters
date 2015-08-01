@@ -21,6 +21,21 @@
     <ClCompile Include="Source\agent\main-eco-agent.cc">
       <Filter>agent\src</Filter>
     </ClCompile>
+    <ClCompile Include="Source\agent\worker-agent.cpp">
+      <Filter>agent\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\utils.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\unit-agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\hq-agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\base-agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\IA.h" />
@@ -56,6 +71,27 @@
     </ClInclude>
     <ClInclude Include="Source\agent\main-eco-agent.hxx">
       <Filter>agent\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\eco-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\worker-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\utils.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\building-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\hq-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\unit-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\base-agent.hh">
+      <Filter>agent\header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

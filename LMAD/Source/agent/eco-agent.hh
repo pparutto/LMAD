@@ -7,7 +7,7 @@ class EcoAgent : public Agent
 {
 public:
 
-	virtual void run() override;
+	virtual void run();
 };
 
 #endif
