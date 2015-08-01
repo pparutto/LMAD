@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Source\IA.cpp" />
@@ -35,6 +35,12 @@
     </ClCompile>
     <ClCompile Include="Source\agent\base-agent.cc">
       <Filter>agent\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\requests\request.cc">
+      <Filter>agent\requests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\requests\prout-request.cc">
+      <Filter>agent\requests</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +99,15 @@
     <ClInclude Include="Source\agent\base-agent.hh">
       <Filter>agent\header</Filter>
     </ClInclude>
+    <ClInclude Include="Source\tech-tree\cost.hh">
+      <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\requests\request.hh">
+      <Filter>agent\requests</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\requests\prout-request.hh">
+      <Filter>agent\requests</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="agent">
@@ -106,6 +121,21 @@
     </Filter>
     <Filter Include="agent\inline">
       <UniqueIdentifier>{791029a5-2c27-4f07-ab03-57628697cd7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TechTree">
+      <UniqueIdentifier>{f43a38bc-464b-4139-be4c-fca6ecd5f17b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TechTree\header">
+      <UniqueIdentifier>{6680eef8-34d8-4ae9-b54d-a85c24c86274}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TechTree\inline">
+      <UniqueIdentifier>{498f4b94-37b5-4fe0-b270-42f1c6001b30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TechTree\src">
+      <UniqueIdentifier>{93d52ebe-444b-4a06-bf12-29f79815d142}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="agent\requests">
+      <UniqueIdentifier>{596f4f10-3679-4a90-85e7-05542334489f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -98,6 +98,7 @@
     <ClCompile Include="Source\agent\unit-agent.cc" />
     <ClCompile Include="Source\agent\utils.cc" />
     <ClCompile Include="Source\agent\worker-agent.cpp" />
+    <ClCompile Include="Source\agent\requests\request.cc" />
     <ClCompile Include="Source\IA.cpp" />
     <ClCompile Include="Source\LMAD.cpp" />
   </ItemGroup>
@@ -120,7 +121,15 @@
     <ClInclude Include="Source\agent\unit-agent.hh" />
     <ClInclude Include="Source\agent\utils.hh" />
     <ClInclude Include="Source\agent\worker-agent.hh" />
+    <ClInclude Include="Source\agent\requests\request.hh" />
     <ClInclude Include="Source\IA.h" />
+    <ClInclude Include="Source\tech-tree\building-tech.hh" />
+    <ClInclude Include="Source\tech-tree\cost.hh" />
+    <ClInclude Include="Source\tech-tree\research-tech.hh" />
+    <ClInclude Include="Source\tech-tree\spell-tech.hh" />
+    <ClInclude Include="Source\tech-tree\tech-tree.hh" />
+    <ClInclude Include="Source\tech-tree\tech.hh" />
+    <ClInclude Include="Source\tech-tree\unit-tech.hh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
