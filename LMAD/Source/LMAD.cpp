@@ -46,6 +46,8 @@ int main(int argc, const char* argv[])
 
 		// Enable some cheat flags
 		Broodwar->enableFlag(Flag::UserInput);
+		Broodwar->setLocalSpeed(0);
+		Broodwar->setGUI(false);
 		// Uncomment to enable complete map information
 		//Broodwar->enableFlag(Flag::CompleteMapInformation);
 
