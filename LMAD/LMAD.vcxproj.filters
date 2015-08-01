@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Source\IA.cpp" />
@@ -37,9 +37,6 @@
       <Filter>agent\src</Filter>
     </ClCompile>
     <ClCompile Include="Source\agent\requests\request.cc">
-      <Filter>agent\requests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\agent\requests\prout-request.cc">
       <Filter>agent\requests</Filter>
     </ClCompile>
   </ItemGroup>
@@ -105,8 +102,23 @@
     <ClInclude Include="Source\agent\requests\request.hh">
       <Filter>agent\requests</Filter>
     </ClInclude>
-    <ClInclude Include="Source\agent\requests\prout-request.hh">
-      <Filter>agent\requests</Filter>
+    <ClInclude Include="Source\tech-tree\tech.hh">
+      <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tech-tree\research-tech.hh">
+      <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tech-tree\spell-tech.hh">
+      <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tech-tree\tech-tree.hh">
+      <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tech-tree\unit-tech.hh">
+      <Filter>TechTree\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tech-tree\building-tech.hh">
+      <Filter>TechTree\header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
