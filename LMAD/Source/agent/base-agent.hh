@@ -16,10 +16,12 @@ public:
 
 	void associate_worker(WorkerAgent* w);
 	void create_pylon();
+	void create_gate();
 
 private:
 	HQAgent* hq_;
 	std::set<WorkerAgent*> workers_;
+	std::set<BWAPI::Unit> pylons_;
 };
 
 #endif /// !BASE_AGENT_HH_

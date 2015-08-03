@@ -10,8 +10,6 @@ public:
 	HQAgent(const BWAPI::Unit u);
 
 	virtual void run();
-
-	void create_zealot();
 };
 
 #endif /// !GATE_AGENT_HH_

@@ -44,7 +44,8 @@ namespace utils
 			double cur_r = dr(generator);
 			double cur_theta = dtheta(generator);
 
-			res = BWAPI::TilePosition(static_cast<int>( round((c.x + cur_r * cos(cur_theta))/32)), static_cast<int>(round((c.y + cur_r * sin(cur_theta)) / 32.0)));
+			res = static_cast<BWAPI::TilePosition>(BWAPI::Position(static_cast<int>(round(c.x + cur_r * cos(cur_theta))),
+																														 static_cast<int>(round(c.y + cur_r * sin(cur_theta)))));
 
 			if (BWAPI::Broodwar->canBuildHere(res, building, nullptr, true))
 				done = true;

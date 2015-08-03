@@ -90,9 +90,6 @@
     <ClInclude Include="Source\agent\building-agent.hh">
       <Filter>agent\header</Filter>
     </ClInclude>
-    <ClInclude Include="Source\agent\hq-agent.hh">
-      <Filter>agent\header</Filter>
-    </ClInclude>
     <ClInclude Include="Source\agent\unit-agent.hh">
       <Filter>agent\header</Filter>
     </ClInclude>
@@ -128,6 +125,12 @@
     </ClInclude>
     <ClInclude Include="Source\agent\requests\requests-fw.hh">
       <Filter>agent\requests</Filter>
+    </ClInclude>
+    <ClInclude Include="gate-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\hq-agent.hh">
+      <Filter>agent\header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

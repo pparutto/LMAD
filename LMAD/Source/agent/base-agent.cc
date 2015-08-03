@@ -32,3 +32,9 @@ BaseAgent::create_pylon()
 		std::cout << w->unit()->build(BWAPI::UnitTypes::Protoss_Pylon, p) << std::endl;
 	}
 }
+
+void 
+BaseAgent::create_gate()
+{
+	//BWAPI::TilePosition p = utils::find_valid_location_circle((*pylons_.begin())->getPosition(), BWAPI::UnitTypes::Protoss_Pylon., BWAPI::UnitTypes::Protoss_Pylon);
+}
