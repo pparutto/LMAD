@@ -1,5 +1,16 @@
 #include "main-army-agent.hh"
 
+#include <BWAPI/Game.h>
+#include <BWAPI/RegionSet.h>
+#include <BWAPI/Region.h>
+
+#include <iostream>
+
+MainArmyAgent::MainArmyAgent()
+{
+
+}
+
 void MainArmyAgent::run()
 {
 	std::set<ArmyAgent*>::iterator it = army_agents_.begin();
@@ -10,4 +21,17 @@ void MainArmyAgent::run()
 		(*it)->run();
 		++it;
 	}
+}
+
+void MainArmyAgent::scout()
+{
+
+}
+
+void MainArmyAgent::add_unit(const BWAPI::Unit& u)
+{
+	ArmyAgent* a = new ArmyAgent(u);
+	army_agents_.insert(a);
+
+	std::cerr << "new unit" << std::endl;
 }

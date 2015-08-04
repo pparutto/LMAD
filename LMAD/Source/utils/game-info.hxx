@@ -1,0 +1,23 @@
+inline const int& MineralLine::region_id_get() const
+{
+	return region_id_;
+}
+
+inline const BWAPI::Region Region::region_get() const
+{
+	return region_;
+}
+
+inline GameInfo* GameInfo::instance_get()
+{
+	if (!instance_)
+	{
+		instance_ = new GameInfo();
+	}
+	return instance_;
+}
+
+inline void GameInfo::instance_clean()
+{
+	delete instance_;
+}

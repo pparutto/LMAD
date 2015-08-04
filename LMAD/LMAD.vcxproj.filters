@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Source\IA.cpp" />
@@ -41,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="Source\agent\requests\requests.cc">
       <Filter>agent\requests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\utils\game-info.cc">
+      <Filter>utils\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +134,11 @@
     </ClInclude>
     <ClInclude Include="Source\agent\hq-agent.hh">
       <Filter>agent\header</Filter>
+    <ClInclude Include="Source\utils\game-info.hxx">
+      <Filter>utils\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\utils\game-info.hh">
+      <Filter>utils\header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +168,18 @@
     </Filter>
     <Filter Include="agent\requests">
       <UniqueIdentifier>{596f4f10-3679-4a90-85e7-05542334489f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{1b57369e-dda0-4bd8-96be-1b24aac33f29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\src">
+      <UniqueIdentifier>{1a4752d7-7a1b-4619-88cd-50c548429e5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\header">
+      <UniqueIdentifier>{c58e3bc0-da10-4de3-836c-581f87d5ad65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\inline">
+      <UniqueIdentifier>{83f66eec-4e72-49f7-8678-4e784d2bff05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

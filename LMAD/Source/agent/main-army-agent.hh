@@ -6,14 +6,23 @@
 
 # include <set>
 
+# include <BWAPI/Region.h>
+
 class MainArmyAgent : public Agent
 {
 public:
 
+	MainArmyAgent();
+
 	virtual void run() override;
 
-private:
+	void add_unit(const BWAPI::Unit& u);
 
+private:
+	void scout();
+
+private:
+	
 	std::set<ArmyAgent*> army_agents_;
 };
 
