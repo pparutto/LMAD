@@ -1,16 +1,23 @@
 #ifndef ARMY_AGENT_HH_
 # define ARMY_AGENT_HH_
 
-# include "agent.hh"
 # include "unit-agent.hh"
 
-class ArmyAgent : public Agent, public UnitAgent
+# include "../utils/game-info.hh"
+
+class ArmyAgent : public UnitAgent
 {
 public:
 
 	ArmyAgent(const BWAPI::Unit& u);
 
-	virtual void run() override;
+protected:
+
+	virtual void protected_run() override;
+
+private:
+
+	MineralLine* line_to_scout_;
 };
 
 # include "army-agent.hxx"

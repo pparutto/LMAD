@@ -4,6 +4,8 @@
 # include <utility>
 # include <set>
 
+# include <BWAPI/unit.h>
+
 class Request;
 
 class Agent
@@ -14,14 +16,22 @@ public:
 
 	virtual void accept(Request* r, unsigned priority);
 
-	virtual void run() = 0;
+	void run();
+
+
+public:
+
+	void parent_set(Agent* parent);
+	Agent* parent_get() const;
 
 protected:
 
+	virtual void protected_run() = 0;
 	void try_request(Request* r, unsigned priority);
 
 private:
 
+	Agent* parent_;
 	std::set<std::pair<Request*, unsigned> > requests_;
 };
 

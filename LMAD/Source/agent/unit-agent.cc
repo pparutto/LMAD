@@ -1,11 +1,7 @@
 #include "unit-agent.hh"
 
-UnitAgent::UnitAgent(const BWAPI::Unit u)
-	: unit_(u)
+UnitAgent::UnitAgent(const BWAPI::Unit unit)
+	: unit_(unit)
 {
-}
 
-const BWAPI::Unit UnitAgent::unit() const
-{
-	return unit_;
 }

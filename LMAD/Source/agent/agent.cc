@@ -18,3 +18,12 @@ void Agent::accept(Request* r, unsigned priority)
 {
 	std::cerr << "request error" << std::endl;
 }
+
+void Agent::run()
+{
+	for (auto r : requests_)
+	{
+		try_request(r.first, r.second);
+	}
+	protected_run();
+}

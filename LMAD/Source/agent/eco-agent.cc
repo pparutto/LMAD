@@ -1,6 +1,6 @@
 #include "eco-agent.hh"
 
-void EcoAgent::run()
+void EcoAgent::protected_run()
 {
 
 }

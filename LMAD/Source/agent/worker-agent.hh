@@ -11,7 +11,9 @@ class WorkerAgent : public EcoAgent, public UnitAgent
 public:
 	WorkerAgent(const BWAPI::Unit u);
 
-	virtual void run() override;
+protected:
+
+	virtual void protected_run() override;
 
 protected:
 	bool is_collecting_;

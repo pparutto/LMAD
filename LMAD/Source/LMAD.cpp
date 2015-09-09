@@ -6,7 +6,7 @@
 #include <chrono>
 #include <string>
 
-#include "IA.h"
+#include "agent/main-agent.hh"
 
 using namespace BWAPI;
 
@@ -30,6 +30,9 @@ int main(int argc, const char* argv[])
 {
 	std::cout << "Connecting..." << std::endl;;
 	reconnect();
+
+	MainAgent ia;
+
 	while (true)
 	{
 		std::cout << "waiting to enter match" << std::endl;
@@ -53,7 +56,7 @@ int main(int argc, const char* argv[])
 
 		if (Broodwar->isInGame())
 		{
-			ia();
+			ia.run();
 		}
 	}
 	std::cout << "Press ENTER to continue..." << std::endl;

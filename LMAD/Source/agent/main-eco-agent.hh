@@ -11,21 +11,27 @@
 # include "worker-agent.hh"
 # include "hq-agent.hh"
 
+# include "base-agent.hh"
+
 class MainEcoAgent : public Agent
 {
 public:
 
-	virtual void run() override;
+	MainEcoAgent();
 
-	void add_worker(WorkerAgent* u);
-	void add_HQ(HQAgent* u);
+	void init();
 
-	std::set<HQAgent*>& HQs();
+	void add_worker(const BWAPI::Unit& u);
+	void add_HQ(const BWAPI::Unit& u);
+
+protected:
+
+	virtual void protected_run() override;
 
 private:
 	std::set<EcoAgent*> eco_agents_;
-	std::set<WorkerAgent*> workers_;
-	std::set<HQAgent*> HQs_;
+	std::set<WorkerAgent*> waiting_workers_;
+	std::set<BaseAgent*> bases_;
 };
 
 # include "main-eco-agent.hxx"

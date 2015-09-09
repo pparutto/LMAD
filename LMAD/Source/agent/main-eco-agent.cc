@@ -2,31 +2,69 @@
 
 #include "worker-agent.hh"
 
+MainEcoAgent::MainEcoAgent()
+{
+}
+
+void MainEcoAgent::init()
+{
+	for (auto e : bases_)
+	{
+		delete e;
+	}
+	bases_.clear();
+
+	for (auto w : waiting_workers_)
+	{
+		delete w;
+	}
+
+	waiting_workers_.clear();
+}
+
 void
-MainEcoAgent::run()
+MainEcoAgent::protected_run()
 {
 	for (EcoAgent* e: eco_agents_)
 		e->run();
 
-	for (HQAgent* e : HQs_)
-		e->run();
+	for (BaseAgent* b : bases_)
+	{
+		b->run();
+	}
 }
 
 void
-MainEcoAgent::add_worker(WorkerAgent* u)
+MainEcoAgent::add_worker(const BWAPI::Unit& u)
 {
-	eco_agents_.insert(u);
-	workers_.insert(u);
+	WorkerAgent* wo = new WorkerAgent(u);
+
+	eco_agents_.insert(wo);
+
+	if (bases_.size())
+	{
+		(*(bases_.begin()))->associate_worker(wo);
+	}
+	else
+	{
+		waiting_workers_.insert(wo);
+	}
 }
 
 void
-MainEcoAgent::add_HQ(HQAgent* u)
+MainEcoAgent::add_HQ(const BWAPI::Unit& u)
 {
-	HQs_.insert(u);
-}
+	HQAgent* hq = new HQAgent(u);
+	BaseAgent* base_agent = new BaseAgent(hq);
 
-std::set<HQAgent*>&
-MainEcoAgent::HQs()
-{
-	return HQs_;
+	if (!bases_.size())
+	{
+		for (auto w : waiting_workers_)
+		{
+			base_agent->associate_worker(w);
+		}
+		waiting_workers_.clear();
+	}
+
+	bases_.insert(base_agent);
 }

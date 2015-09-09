@@ -1,17 +1,24 @@
-#ifndef GATE_AGENT_HH_
-# define GATE_AGENT_HH_
+#ifndef HQ_AGENT_HH_
+# define HQ_AGENT_HH_
 
-# include "building-agent.hh"
 # include "unit-agent.hh"
 
-class HQAgent : public BuildingAgent, public UnitAgent
+class HQAgent : public UnitAgent
 {
 public:
 	HQAgent(const BWAPI::Unit u);
 
-	virtual void run();
+	bool train_worker() const;
 
-	void create_zealot();
+	const bool is_training() const;
+
+protected:
+
+	virtual void protected_run() override;
+
+private:
 };
+
+# include "hq-agent.hxx"
 
 #endif /// !GATE_AGENT_HH_

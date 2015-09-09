@@ -3,11 +3,12 @@
 
 # include "agent.hh"
 
-class EcoAgent : public Agent
+class EcoAgent : virtual public Agent
 {
 public:
 
-	virtual void run();
+protected:
+	virtual void protected_run() override;
 };
 
 #endif

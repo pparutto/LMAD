@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Source\IA.cpp" />
@@ -27,9 +27,6 @@
     <ClCompile Include="Source\agent\utils.cc">
       <Filter>agent\src</Filter>
     </ClCompile>
-    <ClCompile Include="Source\agent\unit-agent.cc">
-      <Filter>agent\src</Filter>
-    </ClCompile>
     <ClCompile Include="Source\agent\hq-agent.cc">
       <Filter>agent\src</Filter>
     </ClCompile>
@@ -44,6 +41,12 @@
     </ClCompile>
     <ClCompile Include="Source\utils\game-info.cc">
       <Filter>utils\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\unit-agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\meta-agent.cc">
+      <Filter>agent\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,12 +93,6 @@
     <ClInclude Include="Source\agent\utils.hh">
       <Filter>agent\header</Filter>
     </ClInclude>
-    <ClInclude Include="Source\agent\building-agent.hh">
-      <Filter>agent\header</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\agent\unit-agent.hh">
-      <Filter>agent\header</Filter>
-    </ClInclude>
     <ClInclude Include="Source\agent\base-agent.hh">
       <Filter>agent\header</Filter>
     </ClInclude>
@@ -134,11 +131,30 @@
     </ClInclude>
     <ClInclude Include="Source\agent\hq-agent.hh">
       <Filter>agent\header</Filter>
+    </ClInclude>
     <ClInclude Include="Source\utils\game-info.hxx">
       <Filter>utils\inline</Filter>
     </ClInclude>
     <ClInclude Include="Source\utils\game-info.hh">
       <Filter>utils\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\hq-agent.hxx">
+      <Filter>agent\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\base-agent.hxx">
+      <Filter>agent\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\unit-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\meta-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\unit-agent.hxx">
+      <Filter>agent\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\meta-agent.hxx">
+      <Filter>agent\inline</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

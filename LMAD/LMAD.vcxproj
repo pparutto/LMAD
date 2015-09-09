@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -75,6 +75,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <PreLinkEvent />
     <Link>
@@ -87,6 +88,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\agent\meta-agent.cc" />
+    <ClCompile Include="Source\agent\unit-agent.cc" />
     <ClCompile Include="Source\utils\game-info.cc" />
     <ClCompile Include="Source\agent\requests\requests.cc" />
     <ClCompile Include="Source\Agent\agent.cc" />
@@ -97,7 +100,6 @@
     <ClCompile Include="Source\agent\main-agent.cc" />
     <ClCompile Include="Source\agent\main-army-agent.cc" />
     <ClCompile Include="Source\agent\main-eco-agent.cc" />
-    <ClCompile Include="Source\agent\unit-agent.cc" />
     <ClCompile Include="Source\agent\utils.cc" />
     <ClCompile Include="Source\agent\worker-agent.cpp" />
     <ClCompile Include="Source\agent\requests\request.cc" />
@@ -106,7 +108,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gate-agent.hh" />
+    <ClInclude Include="Source\agent\base-agent.hxx" />
     <ClInclude Include="Source\agent\hq-agent.hh" />
+    <ClInclude Include="Source\agent\hq-agent.hxx" />
+    <ClInclude Include="Source\agent\meta-agent.hh" />
+    <ClInclude Include="Source\agent\meta-agent.hxx" />
+    <ClInclude Include="Source\agent\unit-agent.hh" />
+    <ClInclude Include="Source\agent\unit-agent.hxx" />
     <ClInclude Include="Source\utils\game-info.hh" />
     <ClInclude Include="Source\utils\game-info.hxx" />
     <ClInclude Include="Source\agent\requests\requests-fw.hh" />
@@ -116,7 +124,6 @@
     <ClInclude Include="Source\agent\army-agent.hh" />
     <ClInclude Include="Source\agent\army-agent.hxx" />
     <ClInclude Include="Source\agent\base-agent.hh" />
-    <ClInclude Include="Source\agent\building-agent.hh" />
     <ClInclude Include="Source\agent\eco-agent.hh" />
     <ClInclude Include="Source\agent\eco-agent.hxx" />
     <ClInclude Include="Source\agent\main-agent.hh" />
@@ -125,7 +132,6 @@
     <ClInclude Include="Source\agent\main-army-agent.hxx" />
     <ClInclude Include="Source\agent\main-eco-agent.hh" />
     <ClInclude Include="Source\agent\main-eco-agent.hxx" />
-    <ClInclude Include="Source\agent\unit-agent.hh" />
     <ClInclude Include="Source\agent\utils.hh" />
     <ClInclude Include="Source\agent\worker-agent.hh" />
     <ClInclude Include="Source\agent\requests\request.hh" />

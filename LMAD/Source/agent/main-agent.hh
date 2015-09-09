@@ -10,7 +10,17 @@ class MainAgent : public Agent
 {
 public:
 
-	virtual void run() override;
+	MainAgent();
+	~MainAgent();
+
+	void init();
+
+protected:
+
+	virtual void protected_run() override;
+
+private:
+	void handle_events();
 
 private:
 

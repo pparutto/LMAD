@@ -8,8 +8,24 @@ HQAgent::HQAgent(const BWAPI::Unit u)
 }
 
 void
-HQAgent::run()
+HQAgent::protected_run()
 {
+}
+
+bool HQAgent::train_worker() const
+{
+	if (is_training())
+	{
+		return false;
+	}
 	if (BWAPI::Broodwar->self()->minerals() >= BWAPI::UnitTypes::Protoss_Probe.mineralPrice())
-		unit_->train(BWAPI::Broodwar->self()->getRace().getWorker());
+	{
+		unit_get()->train(BWAPI::Broodwar->self()->getRace().getWorker());
+		if (is_training())
+		{
+			return true;
+		}
+	}
+
+	return false;
 }

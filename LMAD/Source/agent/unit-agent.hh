@@ -1,17 +1,22 @@
 #ifndef UNIT_AGENT_HH_
 # define UNIT_AGENT_HH_
 
-# include <BWAPI/unit.h>
+# include "agent.hh"
 
-class UnitAgent
+class UnitAgent : virtual public Agent
 {
 public:
-	UnitAgent(const BWAPI::Unit u);
+	UnitAgent(const BWAPI::Unit unit);
 
-	const BWAPI::Unit unit() const;
+public:
 
-protected:
+	const BWAPI::Unit unit_get() const;
+
+private:
+
 	const BWAPI::Unit unit_;
 };
 
-#endif /// !HQ_AGENT_HH_
+# include "unit-agent.hxx"
+
+#endif

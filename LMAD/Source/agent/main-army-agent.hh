@@ -14,9 +14,12 @@ public:
 
 	MainArmyAgent();
 
-	virtual void run() override;
+	void init();
 
 	void add_unit(const BWAPI::Unit& u);
+
+protected:
+	virtual void protected_run() override;
 
 private:
 	void scout();

@@ -11,7 +11,12 @@ MainArmyAgent::MainArmyAgent()
 
 }
 
-void MainArmyAgent::run()
+void MainArmyAgent::init()
+{
+
+}
+
+void MainArmyAgent::protected_run()
 {
 	std::set<ArmyAgent*>::iterator it = army_agents_.begin();
 	std::set<ArmyAgent*>::iterator e = army_agents_.end();
@@ -32,6 +37,4 @@ void MainArmyAgent::add_unit(const BWAPI::Unit& u)
 {
 	ArmyAgent* a = new ArmyAgent(u);
 	army_agents_.insert(a);
-
-	std::cerr << "new unit" << std::endl;
 }
