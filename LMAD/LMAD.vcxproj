@@ -101,9 +101,8 @@
     <ClCompile Include="Source\agent\main-army-agent.cc" />
     <ClCompile Include="Source\agent\main-eco-agent.cc" />
     <ClCompile Include="Source\agent\utils.cc" />
-    <ClCompile Include="Source\agent\worker-agent.cpp" />
+    <ClCompile Include="Source\agent\worker-agent.cc" />
     <ClCompile Include="Source\agent\requests\request.cc" />
-    <ClCompile Include="Source\IA.cpp" />
     <ClCompile Include="Source\LMAD.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,7 +134,6 @@
     <ClInclude Include="Source\agent\utils.hh" />
     <ClInclude Include="Source\agent\worker-agent.hh" />
     <ClInclude Include="Source\agent\requests\request.hh" />
-    <ClInclude Include="Source\IA.h" />
     <ClInclude Include="Source\tech-tree\building-tech.hh" />
     <ClInclude Include="Source\tech-tree\cost.hh" />
     <ClInclude Include="Source\tech-tree\research-tech.hh" />

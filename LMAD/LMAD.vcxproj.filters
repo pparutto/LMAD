@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Source\IA.cpp" />
     <ClCompile Include="Source\LMAD.cpp" />
     <ClCompile Include="Source\Agent\agent.cc">
       <Filter>agent\src</Filter>
@@ -19,9 +18,6 @@
       <Filter>agent\src</Filter>
     </ClCompile>
     <ClCompile Include="Source\agent\main-eco-agent.cc">
-      <Filter>agent\src</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\agent\worker-agent.cpp">
       <Filter>agent\src</Filter>
     </ClCompile>
     <ClCompile Include="Source\agent\utils.cc">
@@ -48,9 +44,11 @@
     <ClCompile Include="Source\agent\meta-agent.cc">
       <Filter>agent\src</Filter>
     </ClCompile>
+    <ClCompile Include="Source\agent\worker-agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\IA.h" />
     <ClInclude Include="Source\Agent\agent.hh">
       <Filter>agent\header</Filter>
     </ClInclude>
