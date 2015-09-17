@@ -14,3 +14,13 @@ inline Agent* Agent::parent_get() const
 {
 	return parent_;
 }
+
+inline void Agent::add_sub_agent(Agent* agent)
+{
+	sub_agents_.insert(agent);
+}
+
+inline void Agent::remove_sub_agent(Agent* agent)
+{
+	sub_agents_.erase(agent);
+}

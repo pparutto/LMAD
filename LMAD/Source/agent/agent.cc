@@ -1,29 +1,125 @@
 #include "agent.hh"
 
-#include "requests/request.hh"
+#include "requests/requests.hh"
+#include "unit-agent.hh"
 
 #include <iostream>
 
-void Agent::request(Request* r, unsigned priority)
+Agent::Agent()
+	: parent_(nullptr)
 {
-	requests_.insert(std::make_pair(r, priority));
+
 }
 
-void Agent::try_request(Request* r, unsigned priority)
+Agent::~Agent()
 {
-	r->visit(this, priority);
+	//sub_agents_.clear();
 }
 
-void Agent::accept(Request* r, unsigned priority)
+void Agent::request(Request* r)
+{
+	requests_.insert(r);
+}
+
+void Agent::try_request(Request* r)
+{
+	r->visit(this);
+}
+
+void Agent::on_unit_created(UnitAgent* u)
+{
+	protected_on_unit_created(u);
+
+	for (auto r : requests_)
+	{
+		r->on_unit_created(u);
+	}
+
+	for (auto a : sub_agents_)
+	{
+		a->on_unit_created(u);
+	}
+}
+
+void Agent::on_unit_completed(UnitAgent* u)
+{
+	protected_on_unit_completed(u);
+
+	for (auto r : requests_)
+	{
+		r->on_unit_completed(u);
+	}
+
+	for (auto a : sub_agents_)
+	{
+		a->on_unit_completed(u);
+	}
+}
+
+void Agent::on_unit_destroyed(UnitAgent* u)
+{
+	protected_on_unit_destroyed(u);
+	
+	for (auto r : requests_)
+	{
+		r->on_unit_destroyed(u);
+	}
+
+	for (auto a : sub_agents_)
+	{
+		a->on_unit_destroyed(u);
+	}
+}
+
+void Agent::protected_on_unit_created(UnitAgent* u)
+{
+
+}
+
+void Agent::protected_on_unit_completed(UnitAgent* u)
+{
+
+}
+
+void Agent::protected_on_unit_destroyed(UnitAgent* u)
+{
+
+}
+
+/** 
+	REQUESTS BEGIN
+**/
+
+void Agent::accept(Request* r)
 {
 	std::cerr << "request error" << std::endl;
 }
 
-void Agent::run()
+void Agent::accept(PylonRequest* r)
 {
+	std::cerr << "request error" << std::endl;
+}
+
+/**
+	REQUESTS END
+**/
+
+void Agent::on_frame()
+{
+	protected_on_frame();
+	for (auto a : sub_agents_)
+	{
+		a->on_frame();
+	}
 	for (auto r : requests_)
 	{
-		try_request(r.first, r.second);
+		try_request(r);
+		r->on_frame();
 	}
-	protected_run();
+}
+
+void Agent::on_request_ended(Request* r)
+{
+	requests_.erase(r);
+	delete r;
 }

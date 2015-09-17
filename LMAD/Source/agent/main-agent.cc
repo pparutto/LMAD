@@ -1,31 +1,75 @@
 #include <iostream>
 #include "main-agent.hh"
 
-#include <BWAPI.h>
-#include <BWAPI/Client.h>
 #include <set>
 
 #include "../utils/game-info.hh"
 
+#include "building-agent.hh"
+
+
 GameInfo* GameInfo::instance_ = 0;
 
 MainAgent::MainAgent()
-	: eco_agent_(new MainEcoAgent())
+	: game_started_(false)
+	, eco_agent_(new MainEcoAgent())
 	, army_agent_(new MainArmyAgent())
 {
-	GameInfo::instance_get()->init();
 }
 
 MainAgent::~MainAgent()
 {
 	delete eco_agent_;
 	delete army_agent_;
+	GameInfo::instance_clean();
 }
 
 void MainAgent::init()
 {
+	GameInfo::instance_get()->init();
+	for (auto a : unit_agents_by_id_)
+	{
+		delete a.second;
+	}
+
+	unit_agents_by_id_.clear();
+
+	game_started_ = true;
 	eco_agent_->init();
 	army_agent_->init();
+	add_sub_agent(eco_agent_);
+	add_sub_agent(army_agent_);
+}
+
+UnitAgent* MainAgent::get_agent_from_bwunit(const BWAPI::Unit& u) const
+{
+	if (u->getPlayer()->getID() == BWAPI::Broodwar->self()->getID())
+	{
+		if (u->getType().isWorker())
+		{
+			return new WorkerAgent(u);
+		}
+		else if (!u->getType().isBuilding())
+		{
+			return new ArmyAgent(u);
+		}
+		else if (u->getType().isResourceDepot())
+		{
+			return new HQAgent(u);
+		}
+		else if (u->getType().isBuilding())
+		{
+			return new BuildingAgent(u);
+		}
+	}
+
+#ifdef _DEBUG
+	//throw("No agent found for this BW unit");
+	std::cerr << "No agent found for this BW unit : Player Id : " << BWAPI::Broodwar->self()->getID()
+		<< " Owner Id : " << u->getPlayer()->getID() << " Unit name : " << u->getType().getName() << std::endl;
+#endif
+
+	return nullptr;
 }
 
 void MainAgent::handle_events()
@@ -42,11 +86,16 @@ void MainAgent::handle_events()
 
 		case BWAPI::EventType::MatchEnd:
 		{
+			game_started_ = false;
 			break;
 		}
 
 		case BWAPI::EventType::MatchFrame:
 		{
+			if (game_started_)
+			{
+				on_frame();
+			}
 			break;
 		}
 
@@ -97,6 +146,10 @@ void MainAgent::handle_events()
 			{
 				std::cout << "create : " << u->getID() << " : " << u->getType().getName() << std::endl;
 			}
+			UnitAgent* agent = get_agent_from_bwunit(u);
+			unit_agents_by_id_[u->getID()] = agent;
+
+			on_unit_created(agent);
 			break;
 		}
 
@@ -104,12 +157,23 @@ void MainAgent::handle_events()
 		{
 			BWAPI::Unit u = e.getUnit();
 			std::cout << "destroy : " << u->getID() << " : " << u->getType().getName() << std::endl;
+
+			UnitAgent* agent = unit_agents_by_id_[u->getID()];
+			if (unit_agents_by_id_.find(u->getID()) == unit_agents_by_id_.end())
+			{
+				std::cerr << "Detroy error" << std::endl;
+			}
+			else
+			{
+				on_unit_destroyed(agent);
+			}
+
 			break;
 		}
 
 		case BWAPI::EventType::UnitMorph:
 		{
-			std::cout << "pouet" << std::endl;
+			std::cout << "Unit Morph" << std::endl;
 			break;
 		}
 
@@ -149,6 +213,17 @@ void MainAgent::handle_events()
 					std::cout << "complete : " << u->getID() << " : " << u->getType().getName() << std::endl;
 				}
 			}
+
+			UnitAgent* agent = unit_agents_by_id_[u->getID()];
+			if (unit_agents_by_id_.find(u->getID()) == unit_agents_by_id_.end())
+			{
+				std::cerr << "Completed error" << std::endl;
+			}
+			else
+			{
+				on_unit_completed(agent);
+			}
+
 			break;
 		}
 
@@ -158,17 +233,17 @@ void MainAgent::handle_events()
 
 }
 
-void MainAgent::protected_run()
+void MainAgent::run()
 {
 	while (BWAPI::Broodwar->isInGame())
 	{
-		GameInfo::instance_get()->debug();
-		eco_agent_->run();
-		army_agent_->run();
-
 		handle_events();
 
 		BWAPI::BWAPIClient.update();
 	}
-	GameInfo::instance_clean();
+}
+
+void MainAgent::protected_on_frame()
+{
+	GameInfo::instance_get()->debug();
 }

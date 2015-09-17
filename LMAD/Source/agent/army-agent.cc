@@ -3,14 +3,14 @@
 
 #include <iostream>
 
-ArmyAgent::ArmyAgent(const BWAPI::Unit& u)
+ArmyAgent::ArmyAgent(const BWAPI::Unit u)
 	: UnitAgent(u)
 	, line_to_scout_(0)
 {
 
 }
 
-void ArmyAgent::protected_run()
+void ArmyAgent::protected_on_frame()
 {
 	// trying to scout for fun.
 	GameInfo* info = GameInfo::instance_get();

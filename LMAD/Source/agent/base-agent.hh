@@ -5,6 +5,8 @@
 # include "worker-agent.hh"
 # include "agent.hh"
 
+# include "requests/requests-fw.hh"
+
 # include <BWAPI.h>
 
 class BaseAgent : public Agent
@@ -19,9 +21,20 @@ public:
 
 	void set_max_workers(const unsigned mineral, const unsigned gas);
 
+
+	/**
+		REQUESTS BEGIN
+	**/
+public:
+	virtual void accept(PylonRequest* r);
+	
+	/**
+		REQUESTS END
+	**/
+
 protected:
 
-	virtual void protected_run() override;
+	virtual void protected_on_frame() override;
 
 private:
 	HQAgent* hq_;

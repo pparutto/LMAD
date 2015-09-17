@@ -47,6 +47,12 @@
     <ClCompile Include="Source\agent\worker-agent.cc">
       <Filter>agent\src</Filter>
     </ClCompile>
+    <ClCompile Include="Source\agent\requests\request-data.cc">
+      <Filter>agent\requests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\building-agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Agent\agent.hh">
@@ -154,6 +160,24 @@
     <ClInclude Include="Source\agent\meta-agent.hxx">
       <Filter>agent\inline</Filter>
     </ClInclude>
+    <ClInclude Include="Source\agent\requests\request-data.hh">
+      <Filter>agent\requests</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\requests\request-data.hxx">
+      <Filter>agent\requests</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\requests\request.hxx">
+      <Filter>agent\requests</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\requests\requests.hxx">
+      <Filter>agent\requests</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\building-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\worker-agent.hxx">
+      <Filter>agent\inline</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="agent">
@@ -195,5 +219,8 @@
     <Filter Include="utils\inline">
       <UniqueIdentifier>{83f66eec-4e72-49f7-8678-4e784d2bff05}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Source\agent\TODO.txt" />
   </ItemGroup>
 </Project>

@@ -61,6 +61,7 @@ public:
 private:
 
 	GameInfo();
+	~GameInfo();
 
 private:
 

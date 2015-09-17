@@ -5,7 +5,7 @@
 
 # include <BWAPI/Unit.h>
 
-# include "agent.hh"
+# include "meta-agent.hh"
 # include "eco-agent.hh"
 
 # include "worker-agent.hh"
@@ -13,7 +13,9 @@
 
 # include "base-agent.hh"
 
-class MainEcoAgent : public Agent
+# include "requests/requests.hh"
+
+class MainEcoAgent : public MetaAgent
 {
 public:
 
@@ -26,12 +28,20 @@ public:
 
 protected:
 
-	virtual void protected_run() override;
+	virtual void protected_on_unit_created(UnitAgent* u) override;
+	virtual void protected_on_unit_completed(UnitAgent* u) override;
+	virtual void protected_on_unit_destroyed(UnitAgent* u) override;
+
+protected:
+
+	virtual void protected_on_frame() override;
 
 private:
 	std::set<EcoAgent*> eco_agents_;
 	std::set<WorkerAgent*> waiting_workers_;
 	std::set<BaseAgent*> bases_;
+
+	PylonRequest* r_;
 };
 
 # include "main-eco-agent.hxx"

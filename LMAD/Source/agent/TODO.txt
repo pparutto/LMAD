@@ -1,0 +1,2 @@
+- Calculer la banque pour l'IA afin d'anticiper des dépenses.
+- Dégager le "on_run" et utiliser "on_frame" à la place

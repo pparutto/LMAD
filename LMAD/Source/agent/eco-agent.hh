@@ -8,7 +8,7 @@ class EcoAgent : virtual public Agent
 public:
 
 protected:
-	virtual void protected_run() override;
+	virtual void protected_on_frame() override;
 };
 
 #endif

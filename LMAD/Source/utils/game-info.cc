@@ -103,12 +103,27 @@ Region::Region(BWAPI::Region region)
 
 GameInfo::GameInfo()
 {
+}
 
+GameInfo::~GameInfo()
+{
+	for (auto l : mineral_lines_)
+	{
+		delete l;
+	}
 }
 
 void GameInfo::init()
 {
 	std::cout << "Info Init" << std::endl;
+
+	for (auto l : mineral_lines_)
+	{
+		delete l;
+	}
+
+	mineral_lines_.clear();
+
 	BWAPI::Regionset regions = BWAPI::Broodwar->getAllRegions();
 	for (auto r : regions)
 	{

@@ -9,11 +9,11 @@ class ArmyAgent : public UnitAgent
 {
 public:
 
-	ArmyAgent(const BWAPI::Unit& u);
+	ArmyAgent(const BWAPI::Unit u);
 
 protected:
 
-	virtual void protected_run() override;
+	virtual void protected_on_frame() override;
 
 private:
 

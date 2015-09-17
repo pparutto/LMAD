@@ -8,7 +8,7 @@ HQAgent::HQAgent(const BWAPI::Unit u)
 }
 
 void
-HQAgent::protected_run()
+HQAgent::protected_on_frame()
 {
 }
 

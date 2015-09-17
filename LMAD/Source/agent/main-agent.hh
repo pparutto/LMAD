@@ -1,10 +1,15 @@
 #ifndef MAIN_AGENT_HH_
 # define MAIN_AGENT_HH_
 
-# include "agent.hh"
+# include "unit-agent.hh"
 
 # include "main-eco-agent.hh"
 # include "main-army-agent.hh"
+
+# include <BWAPI.h>
+# include <BWAPI/Client.h>
+
+# include <map>
 
 class MainAgent : public Agent
 {
@@ -14,19 +19,26 @@ public:
 	~MainAgent();
 
 	void init();
+	void handle_events();
+
+	void run();
 
 protected:
 
-	virtual void protected_run() override;
+	virtual void protected_on_frame() override;
 
 private:
-	void handle_events();
+	UnitAgent* get_agent_from_bwunit(const BWAPI::Unit& u) const;
+
 
 private:
+
+	bool game_started_;
 
 	MainEcoAgent* eco_agent_;
 	MainArmyAgent* army_agent_;
 
+	std::map<int, UnitAgent*> unit_agents_by_id_;
 };
 
 # include "main-agent.hxx"

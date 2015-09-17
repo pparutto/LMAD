@@ -20,6 +20,7 @@ inline GameInfo* GameInfo::instance_get()
 inline void GameInfo::instance_clean()
 {
 	delete instance_;
+	instance_ = nullptr;
 }
 
 inline const std::set<MineralLine*>& GameInfo::mineral_lines_get() const

@@ -16,16 +16,8 @@ void MainArmyAgent::init()
 
 }
 
-void MainArmyAgent::protected_run()
+void MainArmyAgent::protected_on_frame()
 {
-	std::set<ArmyAgent*>::iterator it = army_agents_.begin();
-	std::set<ArmyAgent*>::iterator e = army_agents_.end();
-
-	while (it != e)
-	{
-		(*it)->run();
-		++it;
-	}
 }
 
 void MainArmyAgent::scout()
@@ -36,5 +28,21 @@ void MainArmyAgent::scout()
 void MainArmyAgent::add_unit(const BWAPI::Unit& u)
 {
 	ArmyAgent* a = new ArmyAgent(u);
+	add_sub_agent(a);
 	army_agents_.insert(a);
+}
+
+void MainArmyAgent::protected_on_unit_created(UnitAgent* u)
+{
+
+}
+
+void MainArmyAgent::protected_on_unit_completed(UnitAgent* u)
+{
+
+}
+
+void MainArmyAgent::protected_on_unit_destroyed(UnitAgent* u)
+{
+
 }
