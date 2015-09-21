@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-ArmyAgent::ArmyAgent(const BWAPI::Unit u)
+ArmyAgent::ArmyAgent(BWAPI::Unit u)
 	: UnitAgent(u)
 	, line_to_scout_(0)
 {

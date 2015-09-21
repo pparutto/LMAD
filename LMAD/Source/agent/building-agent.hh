@@ -6,7 +6,7 @@
 class BuildingAgent : public UnitAgent
 {
 public:
-	BuildingAgent(const BWAPI::Unit& u);
+	BuildingAgent(BWAPI::Unit u);
 
 
 protected:

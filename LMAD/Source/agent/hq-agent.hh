@@ -6,9 +6,11 @@
 class HQAgent : public UnitAgent
 {
 public:
-	HQAgent(const BWAPI::Unit u);
 
-	bool train_worker() const;
+	HQAgent(BWAPI::Unit u);
+	virtual ~HQAgent();
+
+	bool train_worker();
 
 	const bool is_training() const;
 
@@ -17,6 +19,9 @@ protected:
 	virtual void protected_on_frame() override;
 
 private:
+
+	bool has_money_;
+
 };
 
 # include "hq-agent.hxx"

@@ -14,9 +14,7 @@ public:
 
 	MainArmyAgent();
 
-	void init();
-
-	void add_unit(const BWAPI::Unit& u);
+	void add_unit(BWAPI::Unit u);
 
 protected:
 
@@ -24,7 +22,9 @@ protected:
 	virtual void protected_on_unit_completed(UnitAgent* u) override;
 	virtual void protected_on_unit_destroyed(UnitAgent* u) override;
 
-protected:
+	virtual void protected_init() override;
+	virtual void protected_clear() override;
+
 	virtual void protected_on_frame() override;
 
 private:

@@ -48,6 +48,18 @@ public:
 	virtual void on_unit_created(UnitAgent* agent) override;
 	virtual void on_unit_completed(UnitAgent* agent) override;
 	virtual void on_unit_destroyed(UnitAgent* agent) override;
+
+
+	enum Phase
+	{
+		CHECKMONEY = 0,
+		FINDWORKER,
+		MOVE_AND_BUILD,
+		RELEASE_WORKER,
+		CHECK_CREATION,
+		CHECK_COMPLETION,
+		END
+	};
 };
 
 # include "requests.hxx"

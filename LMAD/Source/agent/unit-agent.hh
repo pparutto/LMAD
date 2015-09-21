@@ -6,15 +6,20 @@
 class UnitAgent : virtual public Agent
 {
 public:
-	UnitAgent(const BWAPI::Unit unit);
+	UnitAgent(BWAPI::Unit unit);
+	virtual ~UnitAgent();
 
 public:
 
-	const BWAPI::Unit unit_get() const;
+	BWAPI::Unit unit_get() const;
+
+protected:
+
+	virtual void protected_clear() override;
 
 private:
 
-	const BWAPI::Unit unit_;
+	BWAPI::Unit unit_;
 };
 
 # include "unit-agent.hxx"

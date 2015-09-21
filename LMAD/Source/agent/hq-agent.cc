@@ -2,8 +2,15 @@
 
 #include <BWAPI.h>
 
-HQAgent::HQAgent(const BWAPI::Unit u)
+#include "../utils/game-info.hh"
+
+HQAgent::HQAgent(BWAPI::Unit u)
 	: UnitAgent(u)
+	, has_money_(false)
+{
+}
+
+HQAgent::~HQAgent()
 {
 }
 
@@ -12,17 +19,22 @@ HQAgent::protected_on_frame()
 {
 }
 
-bool HQAgent::train_worker() const
+bool HQAgent::train_worker()
 {
 	if (is_training())
 	{
 		return false;
 	}
-	if (BWAPI::Broodwar->self()->minerals() >= BWAPI::UnitTypes::Protoss_Probe.mineralPrice())
+	if (!has_money_)
+	{
+		has_money_ = GameInfo::instance_get()->bank_get()->request_mineral(50);
+	}
+	if (has_money_)
 	{
 		unit_get()->train(BWAPI::Broodwar->self()->getRace().getWorker());
 		if (is_training())
 		{
+			has_money_ = false;
 			return true;
 		}
 	}

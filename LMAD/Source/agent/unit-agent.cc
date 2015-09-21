@@ -1,7 +1,17 @@
 #include "unit-agent.hh"
 
-UnitAgent::UnitAgent(const BWAPI::Unit unit)
+UnitAgent::UnitAgent(BWAPI::Unit unit)
 	: unit_(unit)
 {
 
+}
+
+UnitAgent::~UnitAgent()
+{
+	unit_ = nullptr;
+}
+
+void UnitAgent::protected_clear()
+{
+	unit_ = nullptr;
 }

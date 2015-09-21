@@ -23,6 +23,8 @@ public:
 	virtual void on_unit_completed(UnitAgent* u);
 	virtual void on_unit_destroyed(UnitAgent* u);
 
+	virtual void clear();
+
 protected:
 	RequestData* data_;
 };

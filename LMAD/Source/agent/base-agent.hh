@@ -9,9 +9,13 @@
 
 # include <BWAPI.h>
 
+# include "../utils/game-info.hh"
+
+
 class BaseAgent : public Agent
 {
 public:
+
 	BaseAgent(HQAgent* hq);
 	~BaseAgent();
 
@@ -39,12 +43,15 @@ protected:
 private:
 	HQAgent* hq_;
 	std::set<WorkerAgent*> workers_;
-	std::set<BWAPI::Unit> pylons_;
+	//std::set<BWAPI::Unit> pylons_;
 
 	unsigned max_mineral_;
 	unsigned max_gas_;
 
 	bool is_building_pylon_;
+
+
+	MineralLine* mineral_line_;
 
 };
 

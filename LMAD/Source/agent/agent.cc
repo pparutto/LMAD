@@ -106,20 +106,59 @@ void Agent::accept(PylonRequest* r)
 
 void Agent::on_frame()
 {
+	while (!requests_to_remove_.empty())
+	{
+		requests_.erase(requests_to_remove_.front());
+		delete requests_to_remove_.front();
+		requests_to_remove_.pop();
+	}
+
 	protected_on_frame();
+
 	for (auto a : sub_agents_)
 	{
 		a->on_frame();
 	}
 	for (auto r : requests_)
 	{
-		try_request(r);
 		r->on_frame();
+		try_request(r);
 	}
 }
 
 void Agent::on_request_ended(Request* r)
 {
-	requests_.erase(r);
-	delete r;
+	requests_to_remove_.push(r);
+}
+
+void Agent::init()
+{
+	protected_init();
+}
+
+void Agent::clear()
+{
+	for (auto a : sub_agents_)
+	{
+		a->clear();
+		delete a;
+	}
+	sub_agents_.clear();
+
+	for (auto r : requests_)
+	{
+		r->clear();
+		delete r;
+	}
+	protected_clear();
+}
+
+void Agent::protected_init()
+{
+
+}
+
+void Agent::protected_clear()
+{
+
 }

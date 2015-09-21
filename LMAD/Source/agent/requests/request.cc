@@ -35,3 +35,8 @@ void Request::on_unit_destroyed(UnitAgent* u)
 {
 
 }
+
+void Request::clear()
+{
+
+}

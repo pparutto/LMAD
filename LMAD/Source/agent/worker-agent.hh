@@ -6,21 +6,33 @@
 
 # include <BWAPI.h>
 
+class Resource;
+
 class WorkerAgent : public EcoAgent, public UnitAgent
 {
 public:
-	WorkerAgent(const BWAPI::Unit& u);
+	WorkerAgent(BWAPI::Unit u);
+	virtual ~WorkerAgent();
 
 	void has_orders_set(const bool order);
 	const bool has_orders_get() const;
 
+	void resource_set(Resource* resource);
+	Resource* resource_get() const;
+
 protected:
 
 	virtual void protected_on_frame() override;
+	virtual void protected_clear() override;
 
 protected:
-	bool is_collecting_;
 	bool has_orders_;
+	unsigned mineral_;
+	unsigned gas_;
+	Resource* resource_;
+
+	unsigned last_remaining_resources_;
+	bool is_harvesting_;
 
 };
 

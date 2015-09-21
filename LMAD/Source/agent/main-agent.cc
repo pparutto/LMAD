@@ -11,9 +11,6 @@
 GameInfo* GameInfo::instance_ = 0;
 
 MainAgent::MainAgent()
-	: game_started_(false)
-	, eco_agent_(new MainEcoAgent())
-	, army_agent_(new MainArmyAgent())
 {
 }
 
@@ -24,24 +21,31 @@ MainAgent::~MainAgent()
 	GameInfo::instance_clean();
 }
 
-void MainAgent::init()
+void MainAgent::protected_init()
 {
 	GameInfo::instance_get()->init();
-	for (auto a : unit_agents_by_id_)
-	{
-		delete a.second;
-	}
+
+	eco_agent_ = new MainEcoAgent();
+	eco_agent_->init();
+	add_sub_agent(eco_agent_);
+
+	army_agent_ = new MainArmyAgent();
+	army_agent_->init();
+	add_sub_agent(army_agent_);
+
+	game_started_ = true;
+}
+
+void MainAgent::protected_clear()
+{
+	game_started_ = false;
 
 	unit_agents_by_id_.clear();
 
-	game_started_ = true;
-	eco_agent_->init();
-	army_agent_->init();
-	add_sub_agent(eco_agent_);
-	add_sub_agent(army_agent_);
+	GameInfo::instance_get()->clear();
 }
 
-UnitAgent* MainAgent::get_agent_from_bwunit(const BWAPI::Unit& u) const
+UnitAgent* MainAgent::get_agent_from_bwunit(BWAPI::Unit u) const
 {
 	if (u->getPlayer()->getID() == BWAPI::Broodwar->self()->getID())
 	{
@@ -65,8 +69,8 @@ UnitAgent* MainAgent::get_agent_from_bwunit(const BWAPI::Unit& u) const
 
 #ifdef _DEBUG
 	//throw("No agent found for this BW unit");
-	std::cerr << "No agent found for this BW unit : Player Id : " << BWAPI::Broodwar->self()->getID()
-		<< " Owner Id : " << u->getPlayer()->getID() << " Unit name : " << u->getType().getName() << std::endl;
+	//std::cerr << "No agent found for this BW unit : Player Id : " << BWAPI::Broodwar->self()->getID()
+	//	<< " Owner Id : " << u->getPlayer()->getID() << " Unit name : " << u->getType().getName() << std::endl;
 #endif
 
 	return nullptr;
@@ -86,7 +90,7 @@ void MainAgent::handle_events()
 
 		case BWAPI::EventType::MatchEnd:
 		{
-			game_started_ = false;
+			clear();
 			break;
 		}
 
@@ -221,7 +225,14 @@ void MainAgent::handle_events()
 			}
 			else
 			{
-				on_unit_completed(agent);
+				if (agent)
+				{
+					on_unit_completed(agent);
+				}
+				else
+				{
+					std::cerr << "Crash vs terran ? " << u->getType().getName() << std::endl;
+				}
 			}
 
 			break;
@@ -245,5 +256,6 @@ void MainAgent::run()
 
 void MainAgent::protected_on_frame()
 {
+	GameInfo::instance_get()->on_frame();
 	GameInfo::instance_get()->debug();
 }

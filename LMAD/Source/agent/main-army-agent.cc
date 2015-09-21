@@ -11,7 +11,12 @@ MainArmyAgent::MainArmyAgent()
 
 }
 
-void MainArmyAgent::init()
+void MainArmyAgent::protected_init()
+{
+
+}
+
+void MainArmyAgent::protected_clear()
 {
 
 }
@@ -25,7 +30,7 @@ void MainArmyAgent::scout()
 
 }
 
-void MainArmyAgent::add_unit(const BWAPI::Unit& u)
+void MainArmyAgent::add_unit(BWAPI::Unit u)
 {
 	ArmyAgent* a = new ArmyAgent(u);
 	add_sub_agent(a);

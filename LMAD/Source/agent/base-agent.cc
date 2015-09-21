@@ -3,6 +3,7 @@
 #include "requests/requests.hh"
 
 #include "utils.hh"
+#include "../utils/game-info.hh"
 
 #include <BWAPI/Position.h>
 
@@ -11,6 +12,7 @@ BaseAgent::BaseAgent(HQAgent* hq)
 {
 	add_sub_agent(hq_);
 	set_max_workers(16, 0);
+	mineral_line_ = GameInfo::instance_get()->get_nearest_mineral_line(hq_->unit_get()->getPosition());
 }
 
 BaseAgent::~BaseAgent()
@@ -31,6 +33,34 @@ BaseAgent::associate_worker(WorkerAgent* w)
 {
 	add_sub_agent(w);
 	workers_.insert(w);
+	std::set<Resource*> minerals = mineral_line_->mineral_patches_get();
+
+	unsigned int best_count = 10;
+	double best_dist = DBL_MAX;
+	BWAPI::Position pos = hq_->unit_get()->getPosition();
+
+	Resource* best_resource = nullptr;
+
+	for (auto m : minerals)
+	{
+		if (m->worker_count() < best_count)
+		{
+			best_count = m->worker_count();
+			best_dist = pos.getDistance(m->position_get());
+			best_resource = m;
+		}
+		else if (m->worker_count() == best_count)
+		{
+			double distance = pos.getDistance(m->position_get());
+			if (distance < best_dist)
+			{
+				best_dist = distance;
+				best_resource = m;
+			}
+		}
+	}
+
+	w->resource_set(best_resource);
 }
 
 void
@@ -61,8 +91,15 @@ void BaseAgent::accept(PylonRequest* r)
 
 	switch (data->phase_get())
 	{
-
-	case 0:
+	case PylonRequest::CHECKMONEY:
+	{
+		if (GameInfo::instance_get()->bank_get()->request_mineral(100))
+		{
+			data->phase_set(PylonRequest::FINDWORKER);
+		}
+		break;
+	}
+	case PylonRequest::FINDWORKER:
 	{
 		data->timeout_set(100);
 		for (auto w : workers_)
@@ -71,7 +108,7 @@ void BaseAgent::accept(PylonRequest* r)
 			{
 				w->has_orders_set(true);
 				data->position_set(utils::find_valid_location_circle(hq_->unit_get()->getPosition(), 320, BWAPI::UnitTypes::Protoss_Pylon));
-				data->phase_set(1);
+				data->phase_set(PylonRequest::MOVE_AND_BUILD);
 				data->worker_set(w);
 				break;
 			}
@@ -79,7 +116,7 @@ void BaseAgent::accept(PylonRequest* r)
 		break;
 	}
 
-	case 1:
+	case PylonRequest::MOVE_AND_BUILD:
 	{
 		BWAPI::Position current = data->worker_get()->unit_get()->getPosition();
 
@@ -104,43 +141,51 @@ void BaseAgent::accept(PylonRequest* r)
 			if (data->worker_get()->unit_get()->build(BWAPI::UnitTypes::Protoss_Pylon, data->position_get()))
 			{
 				data->timeout_set(100);
-				data->phase_set(2);
+				data->phase_set(PylonRequest::RELEASE_WORKER);
+
 			}
 		}
 		break;
 	}
 
-	case 2:
+	case PylonRequest::RELEASE_WORKER:
+	{
+		data->phase_set(PylonRequest::CHECK_CREATION);
+		break;
+	}
+
+	case PylonRequest::CHECK_CREATION:
 	{
 		if (r->is_created())
 		{
-			data->phase_set(3);
+			data->worker_get()->has_orders_set(false);
+			data->phase_set(PylonRequest::CHECK_COMPLETION);
 		}
 		else if (data->timeout_get() == 0)
 		{
-			data->phase_set(2);
+			data->phase_set(PylonRequest::FINDWORKER);
 		}
 		break;
 	}
 
-	case 3:
+	case PylonRequest::CHECK_COMPLETION:
 	{
 		if (r->is_completed())
 		{
-			data->phase_set(4);
+			data->phase_set(PylonRequest::END);
 		}
 		else if (r->is_dead())
 		{
 			std::cout << "Pylon got killed :(, retrying" << std::endl;
-			data->phase_set(2);
+			data->phase_set(PylonRequest::FINDWORKER);
 		}
 		break;
 	}
 
-	case 4:
+	case PylonRequest::END:
 	{
-		std::cout << "Pylon request finished" << std::endl;
-		
+		//std::cout << "Pylon request finished" << std::endl;
+		on_request_ended(r);
 		break;
 	}
 

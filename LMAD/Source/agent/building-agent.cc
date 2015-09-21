@@ -1,6 +1,6 @@
 #include "building-agent.hh"
 
-BuildingAgent::BuildingAgent(const BWAPI::Unit& u)
+BuildingAgent::BuildingAgent(BWAPI::Unit u)
 	: UnitAgent(u)
 {
 

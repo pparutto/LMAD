@@ -18,7 +18,6 @@ public:
 	MainAgent();
 	~MainAgent();
 
-	void init();
 	void handle_events();
 
 	void run();
@@ -26,10 +25,12 @@ public:
 protected:
 
 	virtual void protected_on_frame() override;
+	virtual void protected_init() override;
+	virtual void protected_clear() override;
 
 private:
-	UnitAgent* get_agent_from_bwunit(const BWAPI::Unit& u) const;
 
+	UnitAgent* get_agent_from_bwunit(BWAPI::Unit u) const;
 
 private:
 

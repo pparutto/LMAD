@@ -9,7 +9,7 @@ class ArmyAgent : public UnitAgent
 {
 public:
 
-	ArmyAgent(const BWAPI::Unit u);
+	ArmyAgent(BWAPI::Unit u);
 
 protected:
 

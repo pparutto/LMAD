@@ -3,6 +3,7 @@
 
 # include <utility>
 # include <set>
+# include <queue>
 
 # include <BWAPI/unit.h>
 
@@ -17,7 +18,7 @@ class Agent
 public:
 
 	Agent();
-	~Agent();
+	virtual ~Agent();
 
 	void request(Request* r); // priority is between 0 & 100
 
@@ -38,6 +39,9 @@ public:
 
 	void on_frame();
 
+	void init();
+	void clear();
+
 public:
 
 	void parent_set(Agent* parent);
@@ -54,12 +58,16 @@ protected:
 
 	virtual void protected_on_frame() = 0;
 
+	virtual void protected_init();
+	virtual void protected_clear();
+
 	void try_request(Request* r);
 	void on_request_ended(Request* r);
 
 private:
 
 	Agent* parent_;
+	std::queue<Request*> requests_to_remove_;
 	std::set<Request*> requests_;
 	std::set<Agent*> sub_agents_;
 };

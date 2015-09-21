@@ -9,10 +9,12 @@ MainEcoAgent::MainEcoAgent()
 {
 }
 
-void MainEcoAgent::init()
+void MainEcoAgent::protected_init()
 {
-	bases_.clear();
-	waiting_workers_.clear();
+}
+
+void MainEcoAgent::protected_clear()
+{
 }
 
 void MainEcoAgent::protected_on_frame()
@@ -36,7 +38,7 @@ void MainEcoAgent::protected_on_frame()
 }
 
 void
-MainEcoAgent::add_worker(const BWAPI::Unit& u)
+MainEcoAgent::add_worker(BWAPI::Unit u)
 {
 	WorkerAgent* wo = new WorkerAgent(u);
 
@@ -54,7 +56,7 @@ MainEcoAgent::add_worker(const BWAPI::Unit& u)
 }
 
 void
-MainEcoAgent::add_HQ(const BWAPI::Unit& u)
+MainEcoAgent::add_HQ(BWAPI::Unit u)
 {
 	HQAgent* hq = new HQAgent(u);
 	BaseAgent* base_agent = new BaseAgent(hq);
