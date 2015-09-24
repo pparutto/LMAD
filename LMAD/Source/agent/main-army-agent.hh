@@ -14,13 +14,9 @@ public:
 
 	MainArmyAgent();
 
-	void add_unit(BWAPI::Unit u);
 
 protected:
-
-	virtual void protected_on_unit_created(UnitAgent* u) override;
-	virtual void protected_on_unit_completed(UnitAgent* u) override;
-	virtual void protected_on_unit_destroyed(UnitAgent* u) override;
+	virtual void protected_on_unit_completed(ArmyAgent* a) override;
 
 	virtual void protected_init() override;
 	virtual void protected_clear() override;

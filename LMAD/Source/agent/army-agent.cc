@@ -1,6 +1,8 @@
 #include "army-agent.hh"
 #include "../utils/game-info.hh"
 
+#include "requests/request.hh"
+
 #include <iostream>
 
 ArmyAgent::ArmyAgent(BWAPI::Unit u)
@@ -59,3 +61,5 @@ void ArmyAgent::protected_on_frame()
 		unit_get()->move(line_to_scout_->center_get());
 	}
 }
+
+VISIT_DEFINITIONS(ArmyAgent);

@@ -8,6 +8,7 @@ class BuildingAgent : public UnitAgent
 public:
 	BuildingAgent(BWAPI::Unit u);
 
+	VISIT_DECLARATIONS;
 
 protected:
 	virtual void protected_on_frame() override;

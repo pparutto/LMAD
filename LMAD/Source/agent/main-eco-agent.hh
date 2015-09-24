@@ -21,14 +21,10 @@ public:
 
 	MainEcoAgent();
 
-	void add_worker(BWAPI::Unit u);
-	void add_HQ(BWAPI::Unit u);
-
 protected:
 
-	virtual void protected_on_unit_created(UnitAgent* u) override;
-	virtual void protected_on_unit_completed(UnitAgent* u) override;
-	virtual void protected_on_unit_destroyed(UnitAgent* u) override;
+	virtual void protected_on_unit_completed(WorkerAgent* u) override;
+	virtual void protected_on_unit_completed(HQAgent* u) override;
 
 	virtual void protected_init() override;
 	virtual void protected_clear() override;

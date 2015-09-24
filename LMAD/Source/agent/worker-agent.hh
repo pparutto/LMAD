@@ -20,6 +20,8 @@ public:
 	void resource_set(Resource* resource);
 	Resource* resource_get() const;
 
+	VISIT_DECLARATIONS;
+
 protected:
 
 	virtual void protected_on_frame() override;

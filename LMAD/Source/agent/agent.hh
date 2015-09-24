@@ -12,6 +12,32 @@ class Request;
 # include "requests/requests-fw.hh"
 
 class UnitAgent;
+class ArmyAgent;
+class WorkerAgent;
+class HQAgent;
+class BuildingAgent;
+
+# define HH_SUB_PROTECTED_UNIT_EVENT(event_type, UNIT_TYPE) \
+	protected: \
+	virtual void protected_on_unit_##event_type(UNIT_TYPE* a);
+
+# define HH_SUB_UNIT_EVENT(event_type, UNIT_TYPE) \
+	public: \
+	void on_unit_##event_type(UNIT_TYPE* a);
+
+# define HH_PROTECTED_UNIT_EVENT(UNIT_TYPE) \
+	HH_SUB_PROTECTED_UNIT_EVENT(created, UNIT_TYPE); \
+	HH_SUB_PROTECTED_UNIT_EVENT(completed, UNIT_TYPE); \
+	HH_SUB_PROTECTED_UNIT_EVENT(destroyed, UNIT_TYPE);
+
+# define HH_UNIT_EVENT(UNIT_TYPE) \
+	HH_SUB_UNIT_EVENT(created, UNIT_TYPE); \
+	HH_SUB_UNIT_EVENT(completed, UNIT_TYPE); \
+	HH_SUB_UNIT_EVENT(destroyed, UNIT_TYPE);
+
+# define AGENT_HH_UNIT_EVENT(UNIT_TYPE) \
+	HH_PROTECTED_UNIT_EVENT(UNIT_TYPE); \
+	HH_UNIT_EVENT(UNIT_TYPE);
 
 class Agent
 {
@@ -21,10 +47,6 @@ public:
 	virtual ~Agent();
 
 	void request(Request* r); // priority is between 0 & 100
-
-	void on_unit_created(UnitAgent* u);
-	void on_unit_completed(UnitAgent* u);
-	void on_unit_destroyed(UnitAgent* u);
 
 	/**
 		REQUESTS BEGIN
@@ -51,11 +73,6 @@ public:
 	void remove_sub_agent(Agent* agent);
 
 protected:
-
-	virtual void protected_on_unit_created(UnitAgent* u);
-	virtual void protected_on_unit_completed(UnitAgent* u);
-	virtual void protected_on_unit_destroyed(UnitAgent* u);
-
 	virtual void protected_on_frame() = 0;
 
 	virtual void protected_init();
@@ -63,6 +80,13 @@ protected:
 
 	void try_request(Request* r);
 	void on_request_ended(Request* r);
+
+
+	AGENT_HH_UNIT_EVENT(UnitAgent);
+	AGENT_HH_UNIT_EVENT(ArmyAgent);
+	AGENT_HH_UNIT_EVENT(HQAgent);
+	AGENT_HH_UNIT_EVENT(WorkerAgent);
+	AGENT_HH_UNIT_EVENT(BuildingAgent);
 
 private:
 

@@ -3,6 +3,7 @@
 #include <BWAPI.h>
 
 #include "../utils/game-info.hh"
+#include "requests/request.hh"
 
 HQAgent::HQAgent(BWAPI::Unit u)
 	: UnitAgent(u)
@@ -41,3 +42,5 @@ bool HQAgent::train_worker()
 
 	return false;
 }
+
+VISIT_DEFINITIONS(HQAgent);

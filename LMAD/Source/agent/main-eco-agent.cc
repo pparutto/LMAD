@@ -38,28 +38,25 @@ void MainEcoAgent::protected_on_frame()
 }
 
 void
-MainEcoAgent::add_worker(BWAPI::Unit u)
+MainEcoAgent::protected_on_unit_completed(WorkerAgent* a)
 {
-	WorkerAgent* wo = new WorkerAgent(u);
-
-	eco_agents_.insert(wo);
+	eco_agents_.insert(a);
 
 	if (bases_.size())
 	{
-		(*(bases_.begin()))->associate_worker(wo);
+		(*(bases_.begin()))->associate_worker(a);
 	}
 	else
 	{
-		add_sub_agent(wo);
-		waiting_workers_.insert(wo);
+		add_sub_agent(a);
+		waiting_workers_.insert(a);
 	}
 }
 
 void
-MainEcoAgent::add_HQ(BWAPI::Unit u)
+MainEcoAgent::protected_on_unit_completed(HQAgent* a)
 {
-	HQAgent* hq = new HQAgent(u);
-	BaseAgent* base_agent = new BaseAgent(hq);
+	BaseAgent* base_agent = new BaseAgent(a);
 
 	if (!bases_.size())
 	{
@@ -73,16 +70,4 @@ MainEcoAgent::add_HQ(BWAPI::Unit u)
 
 	add_sub_agent(base_agent);
 	bases_.insert(base_agent);
-}
-
-void MainEcoAgent::protected_on_unit_created(UnitAgent* u)
-{
-}
-
-void MainEcoAgent::protected_on_unit_completed(UnitAgent* u)
-{
-}
-
-void MainEcoAgent::protected_on_unit_destroyed(UnitAgent* u)
-{
 }

@@ -1,9 +1,39 @@
 #include "agent.hh"
 
 #include "requests/requests.hh"
+
 #include "unit-agent.hh"
+#include "army-agent.hh"
+#include "worker-agent.hh"
+#include "hq-agent.hh"
+#include "building-agent.hh"
 
 #include <iostream>
+
+#define CC_SUB_UNIT_EVENT(event_type, AGENT_TYPE) \
+	void Agent::on_unit_##event_type(##AGENT_TYPE* a) \
+	{ \
+		protected_on_unit_##event_type(a); \
+		\
+		for (auto r : requests_) \
+		{ \
+			a->visit_request_on_unit_##event_type(r); \
+		} \
+		\
+		for (auto sa : sub_agents_) \
+		{ \
+			a->visit_agent_on_unit_##event_type(sa); \
+		} \
+	} \
+	\
+	void Agent::protected_on_unit_##event_type(##AGENT_TYPE* a) \
+	{ \
+  }
+
+#define CC_UNIT_EVENT(AGENT_TYPE) \
+	CC_SUB_UNIT_EVENT(created, AGENT_TYPE) \
+	CC_SUB_UNIT_EVENT(completed, AGENT_TYPE) \
+	CC_SUB_UNIT_EVENT(destroyed, AGENT_TYPE)
 
 Agent::Agent()
 	: parent_(nullptr)
@@ -24,66 +54,6 @@ void Agent::request(Request* r)
 void Agent::try_request(Request* r)
 {
 	r->visit(this);
-}
-
-void Agent::on_unit_created(UnitAgent* u)
-{
-	protected_on_unit_created(u);
-
-	for (auto r : requests_)
-	{
-		r->on_unit_created(u);
-	}
-
-	for (auto a : sub_agents_)
-	{
-		a->on_unit_created(u);
-	}
-}
-
-void Agent::on_unit_completed(UnitAgent* u)
-{
-	protected_on_unit_completed(u);
-
-	for (auto r : requests_)
-	{
-		r->on_unit_completed(u);
-	}
-
-	for (auto a : sub_agents_)
-	{
-		a->on_unit_completed(u);
-	}
-}
-
-void Agent::on_unit_destroyed(UnitAgent* u)
-{
-	protected_on_unit_destroyed(u);
-	
-	for (auto r : requests_)
-	{
-		r->on_unit_destroyed(u);
-	}
-
-	for (auto a : sub_agents_)
-	{
-		a->on_unit_destroyed(u);
-	}
-}
-
-void Agent::protected_on_unit_created(UnitAgent* u)
-{
-
-}
-
-void Agent::protected_on_unit_completed(UnitAgent* u)
-{
-
-}
-
-void Agent::protected_on_unit_destroyed(UnitAgent* u)
-{
-
 }
 
 /** 
@@ -162,3 +132,9 @@ void Agent::protected_clear()
 {
 
 }
+
+CC_UNIT_EVENT(UnitAgent);
+CC_UNIT_EVENT(ArmyAgent);
+CC_UNIT_EVENT(WorkerAgent);
+CC_UNIT_EVENT(HQAgent);
+CC_UNIT_EVENT(BuildingAgent);

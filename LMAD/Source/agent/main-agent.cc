@@ -153,7 +153,10 @@ void MainAgent::handle_events()
 			UnitAgent* agent = get_agent_from_bwunit(u);
 			unit_agents_by_id_[u->getID()] = agent;
 
-			on_unit_created(agent);
+			if (agent)
+			{
+				agent->visit_agent_on_unit_created(this);
+			}
 			break;
 		}
 
@@ -169,7 +172,7 @@ void MainAgent::handle_events()
 			}
 			else
 			{
-				on_unit_destroyed(agent);
+				agent->visit_agent_on_unit_destroyed(this);
 			}
 
 			break;
@@ -199,24 +202,6 @@ void MainAgent::handle_events()
 		case BWAPI::EventType::UnitComplete:
 		{
 			BWAPI::Unit u = e.getUnit();
-			if (u->getPlayer()->getID() == BWAPI::Broodwar->self()->getID())
-			{
-				if (u->getType().isWorker())
-				{
-					eco_agent_->add_worker(u);
-					std::cout << "complete : " << u->getID() << " : " << u->getType().getName() << std::endl;
-				}
-				else if (!u->getType().isBuilding())
-				{
-					army_agent_->add_unit(u);
-					std::cout << "complete : " << u->getID() << " : " << u->getType().getName() << std::endl;
-				}
-				else if (u->getType().isResourceDepot())
-				{
-					eco_agent_->add_HQ(u);
-					std::cout << "complete : " << u->getID() << " : " << u->getType().getName() << std::endl;
-				}
-			}
 
 			UnitAgent* agent = unit_agents_by_id_[u->getID()];
 			if (unit_agents_by_id_.find(u->getID()) == unit_agents_by_id_.end())
@@ -227,7 +212,7 @@ void MainAgent::handle_events()
 			{
 				if (agent)
 				{
-					on_unit_completed(agent);
+					agent->visit_agent_on_unit_completed(this);
 				}
 				else
 				{

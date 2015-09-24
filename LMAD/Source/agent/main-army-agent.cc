@@ -30,24 +30,9 @@ void MainArmyAgent::scout()
 
 }
 
-void MainArmyAgent::add_unit(BWAPI::Unit u)
+void MainArmyAgent::protected_on_unit_completed(ArmyAgent* a)
 {
-	ArmyAgent* a = new ArmyAgent(u);
 	add_sub_agent(a);
 	army_agents_.insert(a);
 }
 
-void MainArmyAgent::protected_on_unit_created(UnitAgent* u)
-{
-
-}
-
-void MainArmyAgent::protected_on_unit_completed(UnitAgent* u)
-{
-
-}
-
-void MainArmyAgent::protected_on_unit_destroyed(UnitAgent* u)
-{
-
-}

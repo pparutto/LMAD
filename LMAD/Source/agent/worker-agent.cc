@@ -3,6 +3,7 @@
 #include "../utils/game-info.hh"
 
 #include "utils.hh"
+#include "requests/request.hh"
 
 WorkerAgent::WorkerAgent(BWAPI::Unit u)
 	: UnitAgent(u)
@@ -97,3 +98,5 @@ void WorkerAgent::protected_clear()
 {
 	UnitAgent::protected_clear();
 }
+
+VISIT_DEFINITIONS(WorkerAgent);

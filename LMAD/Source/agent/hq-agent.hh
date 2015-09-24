@@ -14,6 +14,8 @@ public:
 
 	const bool is_training() const;
 
+	VISIT_DECLARATIONS;
+
 protected:
 
 	virtual void protected_on_frame() override;
