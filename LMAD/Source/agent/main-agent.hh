@@ -27,6 +27,8 @@ protected:
 	virtual void protected_on_frame() override;
 	virtual void protected_init() override;
 	virtual void protected_clear() override;
+	virtual void protected_on_unit_show(BWAPI::Unit u) override;
+	virtual void protected_on_unit_hide(BWAPI::Unit u) override;
 
 private:
 

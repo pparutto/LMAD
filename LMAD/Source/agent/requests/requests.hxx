@@ -1,67 +1,110 @@
-inline void PylonRequestData::worker_set(WorkerAgent* worker)
+inline void BuildingRequestData::worker_set(WorkerAgent* worker)
 {
 	worker_ = worker;
+	last_worker_position_ = worker_->unit_get()->getPosition();
+	worker_timeout_ = 50;
 }
 
-inline WorkerAgent* PylonRequestData::worker_get() const
+inline WorkerAgent* BuildingRequestData::worker_get() const
 {
 	return worker_;
 }
 
-inline BWAPI::TilePosition PylonRequestData::position_get() const
+inline BWAPI::TilePosition BuildingRequestData::position_get() const
 {
 	return position_;
 }
 
-inline void PylonRequestData::position_set(const BWAPI::TilePosition position)
+inline void BuildingRequestData::position_set(const BWAPI::TilePosition position)
 {
 	position_ = position;
 }
 
-inline void PylonRequestData::building_created_set(const bool b)
+inline void BuildingRequestData::building_created_set(const bool b)
 {
 	building_created_ = b;
 }
 
-inline void PylonRequestData::building_completed_set(const bool b)
+inline void BuildingRequestData::building_completed_set(const bool b)
 {
 	building_completed_ = b;
 }
 
-inline void PylonRequestData::is_dead_set(const bool b)
+inline void BuildingRequestData::is_dead_set(const bool b)
 {
 	is_dead_ = b;
 }
 
-inline const bool PylonRequestData::building_created_get() const
+inline const bool BuildingRequestData::building_created_get() const
 {
 	return building_created_;
 }
 
-inline const bool PylonRequestData::building_completed_get() const
+inline const bool BuildingRequestData::building_completed_get() const
 {
 	return building_completed_;
 }
 
-inline const bool PylonRequestData::is_dead_get() const
+inline const bool BuildingRequestData::is_dead_get() const
 {
 	return is_dead_;
 }
 
-inline const bool PylonRequest::is_created() const
+inline const BWAPI::UnitType BuildingRequestData::building_type_get() const
 {
-	PylonRequestData* data = static_cast<PylonRequestData*>(data_);
+	return building_type_;
+}
+
+inline void BuildingRequestData::building_type_set(BWAPI::UnitType building_type)
+{
+	building_type_ = building_type;
+}
+
+inline BuildingAgent* BuildingRequestData::result_get() const
+{
+	return result_;
+}
+
+inline void BuildingRequestData::result_set(BuildingAgent* agent)
+{
+	result_ = agent;
+}
+
+inline bool BuildingRequestData::is_worker_stuck() const
+{
+	return worker_timeout_ == 0;
+}
+
+inline void BuildingRequestData::worker_timeout_set(const unsigned value)
+{
+	worker_timeout_ = value;
+}
+
+inline void BuildingRequestData::move_timeout_increment()
+{
+	++move_timeout_;
+}
+
+inline const unsigned BuildingRequestData::move_timeout_get() const
+{
+	return move_timeout_;
+}
+
+inline const bool BuildingRequest::is_created() const
+{
+	BuildingRequestData* data = static_cast<BuildingRequestData*>(data_);
 	return data->building_created_get();
 }
 
-inline const bool PylonRequest::is_completed() const
+inline const bool BuildingRequest::is_completed() const
 {
-	PylonRequestData* data = static_cast<PylonRequestData*>(data_);
+	BuildingRequestData* data = static_cast<BuildingRequestData*>(data_);
 	return data->building_completed_get();
 }
 
-inline const bool PylonRequest::is_dead() const
+inline const bool BuildingRequest::is_dead() const
 {
-	PylonRequestData* data = static_cast<PylonRequestData*>(data_);
+	BuildingRequestData* data = static_cast<BuildingRequestData*>(data_);
 	return data->is_dead_get();
 }
+

@@ -33,10 +33,12 @@
 #define CC_UNIT_EVENT(AGENT_TYPE) \
 	CC_SUB_UNIT_EVENT(created, AGENT_TYPE) \
 	CC_SUB_UNIT_EVENT(completed, AGENT_TYPE) \
-	CC_SUB_UNIT_EVENT(destroyed, AGENT_TYPE)
+	CC_SUB_UNIT_EVENT(destroyed, AGENT_TYPE) \
+	CC_SUB_UNIT_EVENT(morphing, AGENT_TYPE)
 
 Agent::Agent()
-	: parent_(nullptr)
+	: last_frame_execution_(-1)
+	, can_suicid_(true)
 {
 
 }
@@ -65,7 +67,7 @@ void Agent::accept(Request* r)
 	std::cerr << "request error" << std::endl;
 }
 
-void Agent::accept(PylonRequest* r)
+void Agent::accept(BuildingRequest* r)
 {
 	std::cerr << "request error" << std::endl;
 }
@@ -76,6 +78,22 @@ void Agent::accept(PylonRequest* r)
 
 void Agent::on_frame()
 {
+	if (parents_.size() == 0 && can_suicid_)
+	{
+		clear();
+		// Haha
+		delete this;
+		return;
+	}
+
+	int current_frame = BWAPI::Broodwar->getFrameCount();
+	if (current_frame == last_frame_execution_)
+	{
+		return;
+	}
+
+	last_frame_execution_ = current_frame;
+
 	while (!requests_to_remove_.empty())
 	{
 		requests_.erase(requests_to_remove_.front());
@@ -110,16 +128,15 @@ void Agent::clear()
 {
 	for (auto a : sub_agents_)
 	{
-		a->clear();
-		delete a;
+		a->remove_parent(this);
 	}
-	sub_agents_.clear();
 
 	for (auto r : requests_)
 	{
 		r->clear();
 		delete r;
 	}
+
 	protected_clear();
 }
 
@@ -133,8 +150,67 @@ void Agent::protected_clear()
 
 }
 
+void Agent::on_unit_show(BWAPI::Unit u)
+{
+	protected_on_unit_show(u);
+
+	for (auto r : requests_)
+	{
+		r->on_unit_show(u);
+	}
+
+	for (auto a : sub_agents_)
+	{
+		a->on_unit_show(u);
+	}
+}
+
+void Agent::protected_on_unit_show(BWAPI::Unit u)
+{
+
+}
+
+void Agent::on_unit_hide(BWAPI::Unit u)
+{
+	protected_on_unit_hide(u);
+
+	for (auto r : requests_)
+	{
+		r->on_unit_hide(u);
+	}
+
+	for (auto a : sub_agents_)
+	{
+		a->on_unit_hide(u);
+	}
+}
+
+void Agent::protected_on_unit_hide(BWAPI::Unit u)
+{
+
+}
+
+void Agent::on_enemy_unit_destroyed(BWAPI::Unit u)
+{
+	protected_on_enemy_unit_destroyed(u);
+
+	for (auto r : requests_)
+	{
+		r->on_enemy_destroy(u);
+	}
+
+	for (auto a : sub_agents_)
+	{
+		a->on_enemy_unit_destroyed(u);
+	}
+}
+
+void Agent::protected_on_enemy_unit_destroyed(BWAPI::Unit u)
+{
+
+}
+
 CC_UNIT_EVENT(UnitAgent);
 CC_UNIT_EVENT(ArmyAgent);
 CC_UNIT_EVENT(WorkerAgent);
-CC_UNIT_EVENT(HQAgent);
 CC_UNIT_EVENT(BuildingAgent);

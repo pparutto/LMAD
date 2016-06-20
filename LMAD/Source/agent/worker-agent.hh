@@ -20,6 +20,8 @@ public:
 	void resource_set(Resource* resource);
 	Resource* resource_get() const;
 
+	const bool is_harvesting_get() const;
+
 	VISIT_DECLARATIONS;
 
 protected:
@@ -27,7 +29,7 @@ protected:
 	virtual void protected_on_frame() override;
 	virtual void protected_clear() override;
 
-protected:
+private:
 	bool has_orders_;
 	unsigned mineral_;
 	unsigned gas_;
@@ -36,6 +38,9 @@ protected:
 	unsigned last_remaining_resources_;
 	bool is_harvesting_;
 
+	int harvest_frames_;
+
+	BWAPI::Position last_pos_;
 };
 
 # include "worker-agent.hxx"

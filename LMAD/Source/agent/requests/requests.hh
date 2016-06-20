@@ -4,11 +4,15 @@
 # include "request.hh"
 # include "../base-agent.hh"
 
-class PylonRequestData : public RequestData
+/****************************************************************************
+************************ PYLON REQUEST **************************************
+*****************************************************************************/
+
+class BuildingRequestData : public RequestData
 {
 public:
 
-	PylonRequestData();
+	BuildingRequestData();
 
 	void worker_set(WorkerAgent* worker);
 	WorkerAgent* worker_get() const;
@@ -24,20 +28,39 @@ public:
 	void building_completed_set(const bool v);
 	void is_dead_set(const bool v);
 
+	const BWAPI::UnitType building_type_get() const;
+	void building_type_set(BWAPI::UnitType building_type);
+
+	BuildingAgent* result_get() const;
+	void result_set(BuildingAgent* agent);
+
+	bool is_worker_stuck() const;
+	void check_worker_position();
+	void worker_timeout_set(const unsigned value);
+
+	void move_timeout_increment();
+	const unsigned move_timeout_get() const;
+
 private:
 
 	WorkerAgent* worker_;
 	BWAPI::TilePosition position_;
+	BWAPI::UnitType building_type_;
 	bool building_created_;
 	bool building_completed_;
 	bool is_dead_;
+	BuildingAgent* result_;
+	unsigned move_timeout_;
+
+	BWAPI::Position last_worker_position_;
+	unsigned int worker_timeout_;
 };
 
-class PylonRequest : public Request
+class BuildingRequest : public Request
 {
 public:
 
-	PylonRequest();
+	BuildingRequest(BWAPI::UnitType building_type);
 
 	virtual void visit(Agent* agent) override;
 
@@ -45,14 +68,16 @@ public:
 	const bool is_completed() const;
 	const bool is_dead() const;
 
-	virtual void on_unit_created(UnitAgent* agent) override;
-	virtual void on_unit_completed(UnitAgent* agent) override;
-	virtual void on_unit_destroyed(UnitAgent* agent) override;
+	virtual void on_unit_created(BuildingAgent* agent) override;
+	virtual void on_unit_completed(BuildingAgent* agent) override;
+	virtual void on_unit_destroyed(BuildingAgent* agent) override;
+	virtual void on_unit_morphing(BuildingAgent* agent) override;
 
 
 	enum Phase
 	{
-		CHECKMONEY = 0,
+		INIT = 0,
+		CHECKMONEY,
 		FINDWORKER,
 		MOVE_AND_BUILD,
 		RELEASE_WORKER,
@@ -61,6 +86,7 @@ public:
 		END
 	};
 };
+
 
 # include "requests.hxx"
 

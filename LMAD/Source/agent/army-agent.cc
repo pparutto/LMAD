@@ -7,58 +7,63 @@
 
 ArmyAgent::ArmyAgent(BWAPI::Unit u)
 	: UnitAgent(u)
-	, line_to_scout_(0)
+	, mode_(NONE)
+	, target_(nullptr)
 {
 
 }
 
 void ArmyAgent::protected_on_frame()
 {
-	// trying to scout for fun.
-	GameInfo* info = GameInfo::instance_get();
-	const std::set<MineralLine*>& mineral_lines = info->mineral_lines_get();
-
-	bool has_reached_line = false;
-
-	if (line_to_scout_)
+	switch (mode_)
 	{
-		std::cout << line_to_scout_->center_get() << ":" << unit_get()->getPosition() << std::endl;
-	}
-
-	if (line_to_scout_ && (line_to_scout_->center_get() == unit_get()->getPosition()))
-	{
-		has_reached_line = true;
-	}
-
-	if (!mineral_lines.size())
-	{
-		return;
-	}
-
-	if (!line_to_scout_)
-	{
-		line_to_scout_ = *(mineral_lines.begin());
-	}
-	else if (has_reached_line)
-	{
-		bool was_last = false;
-		for (auto l : mineral_lines)
+		case NONE:
 		{
-			if (was_last)
+			break;
+		}
+		case SCOUT:
+		{
+			if (can_see_position(first_pos_))
 			{
-				line_to_scout_ = l;
-				break;
+				unit_get()->stop();
+				has_finished_order_ = true;
 			}
-			if (l == line_to_scout_)
+			else
 			{
-				was_last = true;
+				move(first_pos_);
 			}
+			break;
+		}
+		case ATTACK:
+		{
+			if (target_)
+			{
+				attack(target_);
+			}
+			else
+			{
+				attack(first_pos_);
+			}
+			break;
+		}
+		case DEFEND:
+		{
+			move(first_pos_);
+			break;
+		}
+		case PATROL:
+		{
+			move(first_pos_);
+			break;
 		}
 	}
+}
 
-	if (line_to_scout_)
+void ArmyAgent::protected_on_enemy_unit_destroyed(BWAPI::Unit u)
+{
+	if (u == target_)
 	{
-		unit_get()->move(line_to_scout_->center_get());
+		target_ = nullptr;
 	}
 }
 

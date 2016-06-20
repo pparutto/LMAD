@@ -1,20 +1,9 @@
-inline void WorkerAgent::has_orders_set(const bool orders)
-{
-	has_orders_ = orders;
-	if (orders)
-	{
-		is_harvesting_ = false;
-	}
-	else
-	{
-		if (unit_get()->isCarryingGas() || unit_get()->isCarryingMinerals())
-		{
-			unit_get()->returnCargo();
-		}
-	}
-}
-
 inline const bool WorkerAgent::has_orders_get() const
 {
 	return has_orders_;
+}
+
+inline const bool WorkerAgent::is_harvesting_get() const
+{
+	return is_harvesting_;
 }

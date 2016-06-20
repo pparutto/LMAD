@@ -20,12 +20,6 @@
     <ClCompile Include="Source\agent\main-eco-agent.cc">
       <Filter>agent\src</Filter>
     </ClCompile>
-    <ClCompile Include="Source\agent\utils.cc">
-      <Filter>agent\src</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\agent\hq-agent.cc">
-      <Filter>agent\src</Filter>
-    </ClCompile>
     <ClCompile Include="Source\agent\base-agent.cc">
       <Filter>agent\src</Filter>
     </ClCompile>
@@ -51,6 +45,12 @@
       <Filter>agent\requests</Filter>
     </ClCompile>
     <ClCompile Include="Source\agent\building-agent.cc">
+      <Filter>agent\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\utils\utils.cc">
+      <Filter>utils\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\agent\squad-agent.cc">
       <Filter>agent\src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -94,9 +94,6 @@
     <ClInclude Include="Source\agent\worker-agent.hh">
       <Filter>agent\header</Filter>
     </ClInclude>
-    <ClInclude Include="Source\agent\utils.hh">
-      <Filter>agent\header</Filter>
-    </ClInclude>
     <ClInclude Include="Source\agent\base-agent.hh">
       <Filter>agent\header</Filter>
     </ClInclude>
@@ -130,20 +127,11 @@
     <ClInclude Include="Source\agent\requests\requests-fw.hh">
       <Filter>agent\requests</Filter>
     </ClInclude>
-    <ClInclude Include="gate-agent.hh">
-      <Filter>agent\header</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\agent\hq-agent.hh">
-      <Filter>agent\header</Filter>
-    </ClInclude>
     <ClInclude Include="Source\utils\game-info.hxx">
       <Filter>utils\inline</Filter>
     </ClInclude>
     <ClInclude Include="Source\utils\game-info.hh">
       <Filter>utils\header</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\agent\hq-agent.hxx">
-      <Filter>agent\inline</Filter>
     </ClInclude>
     <ClInclude Include="Source\agent\base-agent.hxx">
       <Filter>agent\inline</Filter>
@@ -177,6 +165,24 @@
     </ClInclude>
     <ClInclude Include="Source\agent\worker-agent.hxx">
       <Filter>agent\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\unit-agents.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\building-agent.hxx">
+      <Filter>agent\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\utils\utils.hh">
+      <Filter>utils\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\squad-agent.hxx">
+      <Filter>agent\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\squad-agent.hh">
+      <Filter>agent\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\agent\unit-agents-fw.hh">
+      <Filter>agent\header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

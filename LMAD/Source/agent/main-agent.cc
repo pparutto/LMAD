@@ -11,7 +11,10 @@
 GameInfo* GameInfo::instance_ = 0;
 
 MainAgent::MainAgent()
+	: eco_agent_(nullptr)
+	, army_agent_(nullptr)
 {
+	can_suicid_set(false);
 }
 
 MainAgent::~MainAgent()
@@ -42,6 +45,18 @@ void MainAgent::protected_clear()
 
 	unit_agents_by_id_.clear();
 
+	if (eco_agent_)
+	{
+		remove_sub_agent(eco_agent_);
+		eco_agent_ = nullptr;
+	}
+
+	if (army_agent_)
+	{
+		remove_sub_agent(army_agent_);
+		army_agent_ = nullptr;
+	}
+
 	GameInfo::instance_get()->clear();
 }
 
@@ -56,10 +71,6 @@ UnitAgent* MainAgent::get_agent_from_bwunit(BWAPI::Unit u) const
 		else if (!u->getType().isBuilding())
 		{
 			return new ArmyAgent(u);
-		}
-		else if (u->getType().isResourceDepot())
-		{
-			return new HQAgent(u);
 		}
 		else if (u->getType().isBuilding())
 		{
@@ -135,11 +146,15 @@ void MainAgent::handle_events()
 
 		case BWAPI::EventType::UnitShow:
 		{
+			BWAPI::Unit u = e.getUnit();
+			on_unit_show(u);
 			break;
 		}
 
 		case BWAPI::EventType::UnitHide:
 		{
+			BWAPI::Unit u = e.getUnit();
+			on_unit_hide(u);
 			break;
 		}
 
@@ -170,7 +185,7 @@ void MainAgent::handle_events()
 			{
 				std::cerr << "Detroy error" << std::endl;
 			}
-			else
+			else if (agent)
 			{
 				agent->visit_agent_on_unit_destroyed(this);
 			}
@@ -180,6 +195,20 @@ void MainAgent::handle_events()
 
 		case BWAPI::EventType::UnitMorph:
 		{
+			BWAPI::Unit u = e.getUnit();
+
+			UnitAgent* agent = unit_agents_by_id_[u->getID()];
+			if (!agent)
+			{
+				agent = get_agent_from_bwunit(u);
+				unit_agents_by_id_[u->getID()] = agent;
+			}
+
+			if (agent)
+			{
+				agent->visit_agent_on_unit_morphing(this);
+			}
+
 			std::cout << "Unit Morph" << std::endl;
 			break;
 		}
@@ -243,4 +272,14 @@ void MainAgent::protected_on_frame()
 {
 	GameInfo::instance_get()->on_frame();
 	GameInfo::instance_get()->debug();
+}
+
+void MainAgent::protected_on_unit_show(BWAPI::Unit u)
+{
+	GameInfo::instance_get()->on_unit_show(u);
+}
+
+void MainAgent::protected_on_unit_hide(BWAPI::Unit u)
+{
+	GameInfo::instance_get()->on_unit_hide(u);
 }

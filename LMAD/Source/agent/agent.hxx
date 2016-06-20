@@ -1,26 +1,31 @@
-inline void Agent::parent_set(Agent* parent)
+inline void Agent::add_parent(Agent* parent)
 {
-	if (parent_ != nullptr)
-	{
-		std::cerr << "Warning : an agent is getting a new parent, but the last one was not reseted to null" << std::endl;
-	}
-	else
-	{
-		parent_ = parent;
-	}
+	parents_.insert(parent);
 }
 
-inline Agent* Agent::parent_get() const
+inline void Agent::remove_parent(Agent* parent)
 {
-	return parent_;
+	parents_.erase(parent);
+}
+
+inline std::set<Agent*> Agent::parents_get() const
+{
+	return parents_;
 }
 
 inline void Agent::add_sub_agent(Agent* agent)
 {
 	sub_agents_.insert(agent);
+	agent->add_parent(this);
 }
 
 inline void Agent::remove_sub_agent(Agent* agent)
 {
 	sub_agents_.erase(agent);
+	agent->remove_parent(this);
+}
+
+inline void Agent::can_suicid_set(const bool value)
+{
+	can_suicid_ = value;
 }

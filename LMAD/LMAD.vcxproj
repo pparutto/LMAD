@@ -91,6 +91,7 @@
     <ClCompile Include="Source\agent\building-agent.cc" />
     <ClCompile Include="Source\agent\meta-agent.cc" />
     <ClCompile Include="Source\agent\requests\request-data.cc" />
+    <ClCompile Include="Source\agent\squad-agent.cc" />
     <ClCompile Include="Source\agent\unit-agent.cc" />
     <ClCompile Include="Source\utils\game-info.cc" />
     <ClCompile Include="Source\agent\requests\requests.cc" />
@@ -98,29 +99,30 @@
     <ClCompile Include="Source\agent\army-agent.cc" />
     <ClCompile Include="Source\agent\base-agent.cc" />
     <ClCompile Include="Source\agent\eco-agent.cc" />
-    <ClCompile Include="Source\agent\hq-agent.cc" />
     <ClCompile Include="Source\agent\main-agent.cc" />
     <ClCompile Include="Source\agent\main-army-agent.cc" />
     <ClCompile Include="Source\agent\main-eco-agent.cc" />
-    <ClCompile Include="Source\agent\utils.cc" />
+    <ClCompile Include="Source\utils\utils.cc" />
     <ClCompile Include="Source\agent\worker-agent.cc" />
     <ClCompile Include="Source\agent\requests\request.cc" />
     <ClCompile Include="Source\LMAD.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gate-agent.hh" />
     <ClInclude Include="Source\agent\base-agent.hxx" />
     <ClInclude Include="Source\agent\building-agent.hh" />
-    <ClInclude Include="Source\agent\hq-agent.hh" />
-    <ClInclude Include="Source\agent\hq-agent.hxx" />
+    <ClInclude Include="Source\agent\building-agent.hxx" />
     <ClInclude Include="Source\agent\meta-agent.hh" />
     <ClInclude Include="Source\agent\meta-agent.hxx" />
     <ClInclude Include="Source\agent\requests\request-data.hh" />
     <ClInclude Include="Source\agent\requests\request-data.hxx" />
     <ClInclude Include="Source\agent\requests\request.hxx" />
     <ClInclude Include="Source\agent\requests\requests.hxx" />
+    <ClInclude Include="Source\agent\squad-agent.hh" />
+    <ClInclude Include="Source\agent\squad-agent.hxx" />
     <ClInclude Include="Source\agent\unit-agent.hh" />
     <ClInclude Include="Source\agent\unit-agent.hxx" />
+    <ClInclude Include="Source\agent\unit-agents-fw.hh" />
+    <ClInclude Include="Source\agent\unit-agents.hh" />
     <ClInclude Include="Source\agent\worker-agent.hxx" />
     <ClInclude Include="Source\utils\game-info.hh" />
     <ClInclude Include="Source\utils\game-info.hxx" />
@@ -139,7 +141,7 @@
     <ClInclude Include="Source\agent\main-army-agent.hxx" />
     <ClInclude Include="Source\agent\main-eco-agent.hh" />
     <ClInclude Include="Source\agent\main-eco-agent.hxx" />
-    <ClInclude Include="Source\agent\utils.hh" />
+    <ClInclude Include="Source\utils\utils.hh" />
     <ClInclude Include="Source\agent\worker-agent.hh" />
     <ClInclude Include="Source\agent\requests\request.hh" />
     <ClInclude Include="Source\tech-tree\building-tech.hh" />
